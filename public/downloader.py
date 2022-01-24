@@ -152,23 +152,30 @@ class Downloader:
 
     def get_messages(self):
         try:
-
             for i in range(len(self.names)):
-                self.driver.get(self.urls[i])
-                self.accept_cookies()
+                try:
+                    self.driver.get(self.urls[i])
+                    self.accept_cookies()
 
-                distance, message = self.check_messages_difference(self.names[i])
-                edit = False
-                if distance == 0:
-                    continue
-                elif distance < 0.3 * len(message.text):
-                    # edit
-                    edit = True
+                    distance, message = self.check_messages_difference(self.names[i])
+                    # debug_file.write_text("distance " + distance.__str__())
+                    edit = False
+                    if distance == 0:
+                        continue
+                    elif distance < 0.3 * len(message.text):
+                        # edit
+                        edit = True
+                    # self.driver.save_screenshot('/Users/i343623/PycharmProjects/blaha/message.png')
+                    # self.message_files[i].touch(exist_ok=True)
+                    self.message_files[i].write_text(message.text)
+                    self.db.insert_text(self.names[i], message.text, edit)
+
+                except Exception as e:
+                    # self.driver.save_screenshot('/Users/i343623/PycharmProjects/blaha/fail.png')
+                    # self.debug_files[i].write_text(e.__str__())
                     pass
-                self.db.insert_text(self.names[i], message.text, edit)
-        except Exception as e:
-            pass
         finally:
+            self.driver.save_screenshot('fail.png')
             self.driver.quit()
 
 
