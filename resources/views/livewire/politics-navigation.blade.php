@@ -22,13 +22,13 @@
             @foreach($politicians as $politician)
                 @if ($loop->index < 3)
                     <div class="space-x-8 sm:-my-px py-2 sm:ml-6 sm:flex">
-                        <x-jet-responsive-nav-link href="{{ route('indexOne', $politician) }}" :active="request()->routeIs('politicians.show')">
+                        <x-jet-responsive-nav-link href="{{ route('indexOne', $politician) }}" :active="request()->fullUrlIs(route('indexOne', $politician))">
                             {{ $politician->fullName() }}
-                            <div class="icon">
-                                <img src="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d" alt="none" width="100%" height="100%" />
-                                <div class="txt">10</div>
-                            </div>
-                            <span> {{ $politician->new }} </span>
+                            @if($politician->new)
+                                <div class="notification shadow">
+                                    <div class="notification-text">{{ $politician->new }}</div>
+                                </div>
+                            @endif
                         </x-jet-responsive-nav-link>
                     </div>
                 @endif
@@ -54,9 +54,13 @@
                             {{--                            </div>--}}
                             @foreach($politicians as $politician)
                                 @if ($loop->index >= 3)
-                                    <x-jet-dropdown-link href="{{ route('politician.show', $politician) }}">
+                                    <x-jet-dropdown-link href="{{ route('indexOne', $politician) }}">
                                         {{ $politician->fullName() }}
-                                        <span> {{ $politician->new }} </span>
+                                        @if($politician->new)
+                                            <div class="notification shadow">
+                                                <div class="notification-text">{{ $politician->new }}</div>
+                                            </div>
+                                        @endif
                                     </x-jet-dropdown-link>
                                 @endif
                             @endforeach
