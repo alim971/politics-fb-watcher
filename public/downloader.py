@@ -40,6 +40,9 @@ class MySqlWwrapper:
                 print(f'Table {name} created')
 
     def insert_text(self, name, text, edit):
+        if "Zobrazit víc" in text:
+            print("0 record inserted.")
+            return
         mycursor = self.cnx.cursor()
 
         sql = f'INSERT INTO {name} (text, edit) VALUES (%s, %s)'
