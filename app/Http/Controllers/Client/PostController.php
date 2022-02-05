@@ -41,8 +41,7 @@ class PostController extends Controller
     public function showAll(Request $request)
     {
         $lastUpdate = Carbon::parse(
-//            Cookie::get('update_time', LastUpdate::latest()->first()->created_at->toCookieString())
-            Cookie::get('update_time', Carbon::now()->toCookieString())
+            Cookie::get('update_time', LastUpdate::latest()->first()->created_at->toCookieString())
         );
 //        View::share('update_time', Carbon::now());
         $table = new Post;
