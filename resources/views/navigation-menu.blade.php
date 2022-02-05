@@ -122,7 +122,7 @@
                             </x-slot>
                         </x-jet-dropdown>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+{{--                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>--}}
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
@@ -222,9 +222,9 @@
                         @endforeach
                     @endif
                 @else
-                        <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
-                            {{ __('Login') }}
-                        </x-jet-responsive-nav-link>
+{{--                        <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">--}}
+{{--                            {{ __('Login') }}--}}
+{{--                        </x-jet-responsive-nav-link>--}}
                         @if (Route::has('register'))
                         <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                             {{ __('Register') }}
