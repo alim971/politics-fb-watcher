@@ -93,7 +93,7 @@
                                     @else
                                         <tr>
                                             @php
-{{--                                                $date = \App\Models\LastUpdate::latest()->first()->created_at;--}}
+                                       //$date = \App\Models\LastUpdate::latest()->first()->created_at;
                                                 $date = \Illuminate\Support\Carbon::now();
                                             @endphp
                                             <td class="text-right px-6 py-4" colspan="4" title="{{ $date->isoFormat('LLLL') }}">
