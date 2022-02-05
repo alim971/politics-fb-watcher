@@ -5,11 +5,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from pathlib import Path
 from Levenshtein import distance as lev
 import random
+from datetime import datetime
 import mysql.connector
-import sys
-
 
 
 class MySqlWwrapper:
@@ -25,28 +25,58 @@ class MySqlWwrapper:
         if config is None:
             config = self.config
         self.cnx = mysql.connector.connect(**config)
+        self.get_names()
 
-    def check_and_create_tables(self, names):
+    def get_names(self):
+        mycursor = self.cnx.cursor()
+        mycursor.execute(f'SELECT nick FROM politicians')
+        myresult = mycursor.fetchall()
+        names = []
+        for x in myresult:
+            names.append(x[0].replace('.', '_'))
+        return names
+
+    def save_timestamp(self):
+        mycursor = self.cnx.cursor()
+
+        mycursor.execute('SELECT count(*) as total FROM last_updates')
+        count = mycursor.fetchone()
+
+        if count[0] == 0:
+            mycursor.execute('INSERT INTO last_updates (created_at) VALUES (DEFAULT)')
+            self.cnx.commit()
+        else:
+            mycursor.execute('UPDATE last_updates SET created_at = DEFAULT LIMIT 1')
+            self.cnx.commit()
+        print(mycursor.rowcount, "record inserted into update.")
+
+    def check_and_create_tables(self):
+        names = self.get_names()
         mycursor = self.cnx.cursor()
         mycursor.execute("SHOW TABLES")
         tables = []
         for table in mycursor:
             tables.append(table[0])
-
+        if "last_updates" not in tables:
+            mycursor.execute(
+                f'CREATE TABLE last_updates (id INT AUTO_INCREMENT PRIMARY KEY, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)')
+            print(f'Table last_updates created')
         for name in names:
             if name not in tables:
                 mycursor.execute(
-                    f'CREATE TABLE {name} (id INT AUTO_INCREMENT PRIMARY KEY, text TEXT, date DATETIME DEFAULT CURRENT_TIMESTAMP, edit BOOLEAN)')
+                    f'CREATE TABLE {name} (id INT AUTO_INCREMENT PRIMARY KEY, text TEXT, date DATETIME DEFAULT CURRENT_TIMESTAMP, edit BOOLEAN, img TEXT)')
                 print(f'Table {name} created')
+        return names
 
-    def insert_text(self, name, text, edit):
+    def insert_text(self, name, text, edit, img):
         if "Zobrazit víc" in text:
             print("0 record inserted.")
             return
         mycursor = self.cnx.cursor()
 
-        sql = f'INSERT INTO {name} (text, edit) VALUES (%s, %s)'
-        mycursor.execute(sql, [text, edit])
+        sql = f'INSERT INTO {name} (text, edit, img) VALUES (%s, %s, %s)'
+        # val = (text, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        mycursor.execute(sql, [text, edit, img])
 
         self.cnx.commit()
         print(mycursor.rowcount, "record inserted.")
@@ -60,6 +90,16 @@ class MySqlWwrapper:
 
         print(myresult)
         return "" if myresult is None else myresult[0]
+
+    def update(self, name, img):
+        mycursor = self.cnx.cursor()
+
+        sql = f'UPDATE {name} SET img = %s ORDER BY date DESC LIMIT 1'
+        # val = (text, datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+        mycursor.execute(sql, [img])
+
+        self.cnx.commit()
+        print(mycursor.rowcount, "record updated.")
 
 
 class Credentials:
@@ -80,12 +120,15 @@ class Downloader:
     fb_url = 'https://cs-cz.facebook.com/'
     path = '/Users/i343623/PycharmProjects/'
 
-    def __init__(self, names):
+    def __init__(self):
         self.__init_driver__()
-        self.names = [name.replace('.', '_') for name in names]
         self.db = MySqlWwrapper()
-        self.db.check_and_create_tables(self.names)
+        self.names = self.db.check_and_create_tables()
+        names = [name.replace('_', '.') for name in self.names]
+
         self.urls = [self.fb_url + name for name in names]
+        # self.message_files = [Path(self.path + name + '.last') for name in names]
+        # self.debug_files = [Path(self.path + name + '.debug') for name in names]
 
     def __init_driver__(self):
         options = Options()
@@ -109,6 +152,11 @@ class Downloader:
             button.click()
         except:
             pass
+        # WebDriverWait(driver, 2).until(
+        #     EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Přijmout vše')]"))
+        # )
+        # button = driver.find_element_by_xpath("//*[contains(text(), 'Přijmout vše')]")
+        # button.click()
 
     def login(self):
         email = self.driver.find_element_by_name("email")
@@ -119,16 +167,18 @@ class Downloader:
         password.send_keys(self.credentials.password)
         sleep(1)
 
+        # login = driver.find_element_by_css_selector('[aria-label="Accessible login button"]')
         login = self.driver.find_element_by_name('login')
         login.click()
         sleep(1)
 
     def get_last_message(self):
         try:
-            WebDriverWait(self.driver, 2).until(
+            WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, "//*[contains(text(),'Zobrazit víc')]"))
             )
-            see_more = self.driver.find_element_by_xpath("//*[contains(text(),'Zobrazit víc')]")
+            see_more = self.driver.find_element_by_xpath("//*[contains(text(),'Zobrazit víc')]")  # 'Zobrazit víc')]")
+            # self.driver.save_screenshot('/Users/i343623/PycharmProjects/blaha/message2.png')
             self.driver.execute_script("arguments[0].scrollIntoView();", see_more)
 
             try:
@@ -146,12 +196,25 @@ class Downloader:
         except:
             pass
 
+        # WebDriverWait(driver, 10).until(
+        #     EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Zobrazit víc']")) #'Zobrazit víc')]"))
+        # )
+
         return self.driver.find_element_by_css_selector("[data-ad-comet-preview=message]")
 
     def check_messages_difference(self, name):
         last_message = self.db.get_last_saved_messsage(name)
         message = self.get_last_message()
         return lev(last_message, message.text), message
+
+    def get_image_if_exist(self, message):
+        try:
+            div = message.find_element_by_xpath('..')
+            img = div.find_element_by_xpath('following-sibling::div').find_element_by_tag_name("img")
+
+            return img.get_attribute('src')
+        except Exception as e:
+            return None
 
     def get_messages(self):
         try:
@@ -161,31 +224,25 @@ class Downloader:
                     self.accept_cookies()
 
                     distance, message = self.check_messages_difference(self.names[i])
-                    # debug_file.write_text("distance " + distance.__str__())
+                    img = self.get_image_if_exist(message)
                     edit = False
                     if distance == 0:
                         continue
                     elif distance < 0.3 * len(message.text):
                         # edit
                         edit = True
-                    # self.driver.save_screenshot('/Users/i343623/PycharmProjects/blaha/message.png')
-                    # self.message_files[i].touch(exist_ok=True)
-                    self.message_files[i].write_text(message.text)
-                    self.db.insert_text(self.names[i], message.text, edit)
+                    self.db.insert_text(self.names[i], message.text, edit, img)
 
                 except Exception as e:
-                    # self.driver.save_screenshot('/Users/i343623/PycharmProjects/blaha/fail.png')
-                    # self.debug_files[i].write_text(e.__str__())
                     pass
         finally:
+            self.db.save_timestamp()
             self.driver.save_screenshot('fail.png')
             self.driver.quit()
+            self.db.cnx.close()
+
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        politicians = ['robertficosk', 'LBlaha', 'ChmelarEduard', 'ing.milan.uhrik', 'MilanMazurek.Republika']
-    else:
-        politicians = sys.argv[1].split(',')
-    downloader = Downloader(politicians)
+    downloader = Downloader()
     downloader.get_messages()
