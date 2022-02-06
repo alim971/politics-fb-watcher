@@ -4942,8 +4942,8 @@ body {
 }
 
 .notification-mobile {
-  top: -36px;
-  left: 80px;
+  top: 0px;
+  left: 0px;
   height: 19px;
   width: 19px;
 }
