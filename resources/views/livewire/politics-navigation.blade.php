@@ -25,7 +25,7 @@
                         <x-jet-responsive-nav-link href="{{ route('indexOne', $politician) }}" :active="request()->fullUrlIs(route('indexOne', $politician))">
                             {{ $politician->fullName() }}
                             @if($politician->new)
-                                <div class="notification shadow">
+                                <div class="notification-mobile shadow">
                                     <div class="notification-text">{{ $politician->new }}</div>
                                 </div>
                             @endif
@@ -57,7 +57,7 @@
                                     <x-jet-dropdown-link href="{{ route('indexOne', $politician) }}">
                                         {{ $politician->fullName() }}
                                         @if($politician->new)
-                                            <div class="notification shadow">
+                                            <div class="notification-drop shadow">
                                                 <div class="notification-text">{{ $politician->new }}</div>
                                             </div>
                                         @endif

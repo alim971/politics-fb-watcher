@@ -105,6 +105,22 @@ body {
     width: 33px;
 }
 
+.notification-mobile {
+    @extend .notification-base;
+    top: -36px;
+    left: 80px;
+    height: 19px;
+    width: 19px;
+}
+
+.notification-drop {
+    @extend .notification-base;
+    top: -20px;
+    left: 100px;
+    height: 19px;
+    width: 19px;
+}
+
 .notification-text {
     justify-content: center;
     font-weight: bolder;

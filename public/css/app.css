@@ -4919,7 +4919,7 @@ body {
   font-family: Segoe UI Historic, Segoe UI, Helvetica, Arial, sans-serif;
 }
 
-.notification-base, .notification-new, .notification {
+.notification-base, .notification-drop, .notification-mobile, .notification-new, .notification {
   background-color: #e41e3f;
   border-radius: 50%;
   line-height: 1;
@@ -4937,6 +4937,20 @@ body {
 .notification-new {
   top: -21px;
   left: -5px;
+  height: 33px;
+  width: 33px;
+}
+
+.notification-mobile {
+  top: -36px;
+  left: 80px;
+  height: 33px;
+  width: 33px;
+}
+
+.notification-drop {
+  top: -20px;
+  left: 100px;
   height: 33px;
   width: 33px;
 }
