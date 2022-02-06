@@ -3,7 +3,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <br class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-2 sm:px-20 bg-white border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -68,6 +68,11 @@
                     </div>
                 </div>
                 <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5"></div>
+                <div id="showBlocked" class="hidden">
+                    Na zobrazenie Facebook komentárov je potrebné vypnúť AdBlock.<br />
+                    Táto stránka neobsahuje žiadne reklamy, preto ju môžete pridať do AdBlocku ako výnimku. <br />
+                    Ďakujem.
+                </div>
             </div>
         </div>
     </div>
