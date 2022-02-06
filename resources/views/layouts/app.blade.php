@@ -25,7 +25,7 @@
         <script>
             if( window.canRunAds === undefined ){
                 // adblocker detected, show fallback
-                $('#showBlocked').removeClass('hidden');
+                document.getElementById('showBlocked').className = ''
             }
         </script>
         <x-jet-banner />
