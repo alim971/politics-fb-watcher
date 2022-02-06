@@ -48,7 +48,7 @@
         <script>
             if( window.canRunAds === undefined ){
                 // adblocker detected, show fallback
-                document.getElementById('showBlocked').classssName = 'text-center'
+                document.getElementById('shosswBlocked').className = 'text-center'
             }
         </script>
     </body>
