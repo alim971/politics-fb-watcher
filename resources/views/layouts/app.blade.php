@@ -22,12 +22,6 @@
     <body class="font-sans antialiased">
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=1177874132956217&autoLogAppEvents=1" nonce="4C20h8kE"></script>
-        <script>
-            if( window.canRunAds === undefined ){
-                // adblocker detected, show fallback
-                document.getElementById('showBlocked').className = ''
-            }
-        </script>
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -51,5 +45,11 @@
         @stack('modals')
 
         @livewireScripts
+        <script>
+            if( window.canRunAds === undefined ){
+                // adblocker detected, show fallback
+                document.getElementById('showBlocked').className = ''
+            }
+        </script>
     </body>
 </html>
