@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5"></div>
+                <div class="fb-comments" data-href="{{ Request::url() }}" target="_top" data-width="" data-numposts="5"></div>
             </div>
         </div>
     </div>
