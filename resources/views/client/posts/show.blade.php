@@ -65,14 +65,14 @@
                             <div style="width: 100%; text-align: -webkit-center"><img alt="Photo from Fb post" src="{{ $img }}"></div>
                         </div>
                         @endif
+                        <div id="showBlocked" class="hidden">
+                            Na zobrazenie Facebook komentárov je potrebné vypnúť AdBlock.<br />
+                            Táto stránka neobsahuje žiadne reklamy, preto ju môžete pridať do AdBlocku ako výnimku. <br />
+                            Ďakujem.
+                        </div>
                     </div>
                 </div>
                 <div class="fb-comments" data-href="{{ Request::url() }}" data-width="" data-numposts="5"></div>
-                <div id="showBlocked" class="hidden">
-                    Na zobrazenie Facebook komentárov je potrebné vypnúť AdBlock.<br />
-                    Táto stránka neobsahuje žiadne reklamy, preto ju môžete pridať do AdBlocku ako výnimku. <br />
-                    Ďakujem.
-                </div>
             </div>
         </div>
     </div>
