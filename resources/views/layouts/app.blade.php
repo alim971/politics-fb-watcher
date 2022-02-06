@@ -46,9 +46,11 @@
 
         @livewireScripts
         <script>
-            if( window.canRunAds === undefined ){
+            if( window.canRunAds === true ){
                 // adblocker detected, show fallback
-                document.getElementById('shosswBlocked').className = 'text-center'
+                document.getElementById('showBlocked').className = 'text-center'
+            } else {
+
             }
         </script>
     </body>
