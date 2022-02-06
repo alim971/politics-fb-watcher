@@ -4944,15 +4944,15 @@ body {
 .notification-mobile {
   top: -36px;
   left: 80px;
-  height: 33px;
-  width: 33px;
+  height: 19px;
+  width: 19px;
 }
 
 .notification-drop {
   top: -20px;
   left: 100px;
-  height: 33px;
-  width: 33px;
+  height: 19px;
+  width: 19px;
 }
 
 .notification-text {
