@@ -17,7 +17,7 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ public_path('js/prebid-ads.js') }}" defer></script>
+        <script src="{{ 'js/prebid-ads.js' }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div id="fb-root"></div>
