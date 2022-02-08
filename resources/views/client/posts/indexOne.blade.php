@@ -28,8 +28,8 @@
                                         https://www.facebook.com/profile.php?id=100057776421847
                                     </a>
                                 @else
-                                    <a href="https://www.facebook.com/{{ $post->politician()->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
-                                        https://www.facebook.com/{{ $post->politician()->nick }}
+                                    <a href="https://www.facebook.com/{{ $politician->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
+                                        https://www.facebook.com/{{ $politician->nick }}
                                     </a>
                                 @endif
                             </div>
