@@ -36,8 +36,8 @@ class PoliticsNavigation extends Component
             }
             $diff = $count - Cookie::get($politician->nick());
             $diff1 = $count - Session::get($politician->nick());
-            $politician->new = $diff;
-            $politician->new1 = $diff1;
+            $politician->new = $diff1;
+            $politician->new1 = $diff;
         }
         if($this->areCookiesEnabled()) {
             Cookie::queue(Cookie::make('update_time', LastUpdate::latest()->first()->created_at->toCookieString()));
