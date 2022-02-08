@@ -42,6 +42,7 @@ class Post extends Model
     }
 
     public function politician() {
-        return Politician::firstWhere('nick', str_replace('_', '.', $this->getTable()));
+        $politician =  Politician::firstWhere('nick', $this->getTable());
+        return $politician ?? Politician::firstWhere('username', $this->getTable());
     }
 }

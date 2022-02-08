@@ -23,8 +23,8 @@
                                 {{ $politician->fullName() }}
                             </div>
                             <div class="text-sm text-gray-500">
-                                <a href="https://www.facebook.com/{{ $politician->nick() }}" target="_blank" class="text-gray-500 hover:text-gray-900">
-                                    https://www.facebook.com/{{ $politician->nick() }}
+                                <a href="https://www.facebook.com/{{ $politician->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
+                                    https://www.facebook.com/{{ $politician->nick }}
                                 </a>
                             </div>
                         </div>
