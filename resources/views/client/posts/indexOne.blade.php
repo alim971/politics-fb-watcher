@@ -68,9 +68,23 @@
                             @forelse($posts as $post)
                                 <tr>
                                     <td class="px-6 py-4">
-                                        <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
-                                            <div class="text-sm text-gray-900 hover:zoom-11">{{ $post->firstWords(30) }}</div>
-                                        </a>
+                                        <div class="flex items-center hover:zoom-11">
+                                            @if($post->img != null)
+                                                <div class="flex-shrink-0 h-10 w-10">
+                                                    <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
+                                                        <img class="h-10 w-10 rounded-full shadow" src="{{ $post->img }}" alt="Photo from FB post">
+                                                    </a>
+                                                </div>
+                                            @endif
+                                            <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
+                                                <div {{ $post->img == null ? 'style=margin-left:3.5rem;' : 'class=ml-4'}} >
+                                                    <div class="text-sm text-gray-900 ">
+                                                        {{ $post->firstWords(25) }}
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                        </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                     <span title="{{ $post->date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
