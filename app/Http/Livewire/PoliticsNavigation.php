@@ -24,20 +24,20 @@ class PoliticsNavigation extends Component
         foreach ($politicians as $politician) {
             $table->setTable($politician->nick());
             $count = $table->where('edit', 0)->get()->count();
-            if(array_key_exists(4, $url) && $url[4] == $politician->nick) {
+            if(array_key_exists(4, $url) && $url[4] == $politician->username) {
                 Session::put($politician->nick(), $count);
 
-                if($this->areCookiesEnabled()) {
+//                if($this->areCookiesEnabled()) {
 //                    Session::put($politician->nick(), $count);
-                    Cookie::queue(Cookie::make($politician->nick(), $count));
-                }
+//                    Cookie::queue(Cookie::make($politician->nick(), $count));
+//                }
                 if(URL::previous() != URL::current()) {
                     continue;
                 }
             }
 //            $diff = $count - Cookie::get($politician->nick());
             $diff1 = $count - Session::get($politician->nick());
-            $politician->new = $politician->nick();
+            $politician->new = $diff1;
 //            $politician->new1 = $diff;
         }
 //        if($this->areCookiesEnabled()) {
