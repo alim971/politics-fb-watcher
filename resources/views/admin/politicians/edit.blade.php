@@ -36,12 +36,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nick"
-                                           class="control-label">Name</label>
+                                           class="control-label">Nick</label>
                                     <input type="text" name="nick" class="form-control" id="nick" value="{{ old('nick', $politician->nick)}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="username"
-                                           class="control-label">Name</label>
+                                           class="control-label">UserName</label>
                                     <input type="text" name="username" class="form-control" id="username" value="{{ old('username', $politician->username)}}">
                                 </div>
                                 <div class="form-group">
