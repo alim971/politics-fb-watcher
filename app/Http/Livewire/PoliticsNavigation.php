@@ -27,9 +27,9 @@ class PoliticsNavigation extends Component
             if(array_key_exists(4, $url) && $url[4] == $politician->nick) {
                 Session::put($politician->nick(), $count);
 
-//                if($this->areCookiesEnabled()) {
+                if($this->areCookiesEnabled()) {
 //                    Session::put($politician->nick(), $count);
-//                    Cookie::queue(Cookie::make($politician->nick(), $count));
+                    Cookie::queue(Cookie::make($politician->nick(), $count));
 //                }
                 if(URL::previous() != URL::current()) {
                     continue;
