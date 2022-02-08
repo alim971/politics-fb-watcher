@@ -17,7 +17,7 @@ class PoliticianController extends Controller
     public function index()
     {
         $politicians = Politician::paginate(10);
-        return view('admin', ['politicians' => $politicians]);
+        return view('admin.politicians.admin', ['politicians' => $politicians]);
     }
 
     /**
