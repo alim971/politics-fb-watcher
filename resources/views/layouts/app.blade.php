@@ -65,7 +65,7 @@
                 {{ $slot }}
             </main>
         </div>
-        @include('cookieConsent::index')
+{{--        @include('cookieConsent::index')--}}
         @stack('modals')
 
         @livewireScripts
