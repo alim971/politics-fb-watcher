@@ -88,7 +88,7 @@
                                     @endforelse
                                     @if($posts->hasPages())
                                         <tr>
-                                            <td class="text-center" colspan="4">{{ $posts->onEachSide(4)->links() }}</td>
+                                            <td class="text-center" colspan="4">{{ $posts->onEachSide(2)->links() }}</td>
                                         </tr>
                                     @else
                                         <tr>
