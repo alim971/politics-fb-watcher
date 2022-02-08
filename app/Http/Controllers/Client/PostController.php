@@ -94,7 +94,7 @@ class PostController extends Controller
             $count,
             $perPage,
             $page,
-            ['path' => url(route('indexOne'))]
+            ['path' => url(route('indexOne', ['politician' => $politician]))]
         );
         $politician->newPosts = $count - Session::get($politician->nick(), 0);
 
