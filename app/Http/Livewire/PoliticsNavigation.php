@@ -25,24 +25,23 @@ class PoliticsNavigation extends Component
             $table->setTable($politician->nick());
             $count = $table->where('edit', 0)->get()->count();
             if(array_key_exists(4, $url) && $url[4] == $politician->nick) {
-                Session::put('try', 1);
-                Session::put($politician->nick(), $count);
                 if($this->areCookiesEnabled()) {
-                    Cookie::queue(Cookie::make($politician->nick(), $count));
+                    Session::put($politician->nick(), $count);
+//                    Cookie::queue(Cookie::make($politician->nick(), $count));
                 }
                 if(URL::previous() != URL::current()) {
                     continue;
                 }
             }
-            $diff = $count - Cookie::get($politician->nick());
+//            $diff = $count - Cookie::get($politician->nick());
             $diff1 = $count - Session::get($politician->nick());
             $politician->new = $diff1;
-            $politician->new1 = $diff;
+//            $politician->new1 = $diff;
         }
         if($this->areCookiesEnabled()) {
-            Cookie::queue(Cookie::make('update_time', LastUpdate::latest()->first()->created_at->toCookieString()));
+//            Cookie::queue(Cookie::make('update_time', LastUpdate::latest()->first()->created_at->toCookieString()));
+            Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
         }
-        Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
 
         return view('livewire.politics-navigation', [
             'politicians' => $politicians
