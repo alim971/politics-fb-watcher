@@ -96,7 +96,7 @@ class PostController extends Controller
             $page,
             ['path' => url(route('indexAll'))]
         );
-        $politician->newPosts = $count - Cookie::get($politician->nick(), 0);
+        $politician->newPosts = $count - Session::get($politician->nick(), 0);
 
         return view('client.posts.indexOne', ['politician' => $politician, 'posts' => $paginate]);
     }
