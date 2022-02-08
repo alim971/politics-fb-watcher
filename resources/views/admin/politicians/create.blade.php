@@ -40,6 +40,11 @@
                                     <input type="text" name="nick" class="form-control" id="nick" value="{{ old('nick')}}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="username"
+                                           class="control-label">Name</label>
+                                    <input type="text" name="username" class="form-control" id="username" value="{{ old('username')}}">
+                                </div>
+                                <div class="form-group">
                                     <label for="image"
                                            class="control-label">Image source</label>
                                     <input type="text" name="image" class="form-control" id="image" value="{{ old('image')}}">
