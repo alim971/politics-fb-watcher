@@ -14,7 +14,7 @@ class AddNonnullableusernameToPoliticians extends Migration
     public function up()
     {
         Schema::table('politicians', function (Blueprint $table) {
-            $table->string('username',)->nullable(false);
+            $table->string('username',)->nullable(false)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class AddNonnullableusernameToPoliticians extends Migration
     public function down()
     {
         Schema::table('politicians', function (Blueprint $table) {
-            $table->string('username',)->nullable(true);
+            $table->string('username',)->nullable(true)->change();
         });
     }
 }
