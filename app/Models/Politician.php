@@ -20,7 +20,7 @@ class Politician extends Model
      */
     public function getRouteKeyName()
     {
-        return 'nick';
+        return 'username';
     }
 
     public function fullName() {
