@@ -7,7 +7,6 @@
                 Politici
             </h2>
             <div class="pull-right">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i class="fa fa-floppy-o"></i></button>
                 <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" href="{{ url()->previous() }}"><i
                         class="fa fa-arrow-left"></i></a>
             </div>
@@ -21,6 +20,7 @@
 
                         <div class="mt-8 text-2xl">
                             Welcome to your Jetstream application!
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i class="fa fa-floppy-o"></i></button>
                         </div>
                         <div class="mt-6 text-gray-500">
                             <div class="x_content">
