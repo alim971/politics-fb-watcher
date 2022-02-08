@@ -6,6 +6,7 @@ use App\Models\LastUpdate;
 use App\Models\Politician;
 use App\Models\Post;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
@@ -24,6 +25,8 @@ class PoliticsNavigation extends Component
             $table->setTable($politician->nick());
             $count = $table->where('edit', 0)->get()->count();
             if(array_key_exists(4, $url) && $url[4] == $politician->nick) {
+                Session::put('try', 1);
+                Session::put($politician->nick(), $count);
                 if($this->areCookiesEnabled()) {
                     Cookie::queue(Cookie::make($politician->nick(), $count));
                 }
@@ -32,11 +35,15 @@ class PoliticsNavigation extends Component
                 }
             }
             $diff = $count - Cookie::get($politician->nick());
+            $diff1 = $count - Session::get($politician->nick());
             $politician->new = $diff;
+            $politician->new1 = $diff1;
         }
         if($this->areCookiesEnabled()) {
             Cookie::queue(Cookie::make('update_time', LastUpdate::latest()->first()->created_at->toCookieString()));
         }
+        Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
+
         return view('livewire.politics-navigation', [
             'politicians' => $politicians
         ]);
