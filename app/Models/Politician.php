@@ -31,6 +31,6 @@ class Politician extends Model
         if($this->username != null) {
             return $this->username;
         }
-        return str_replace('.', '_', $this->nick);
+        return $this->nick;
     }
 }
