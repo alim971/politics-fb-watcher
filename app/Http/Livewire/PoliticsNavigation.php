@@ -37,7 +37,7 @@ class PoliticsNavigation extends Component
             }
 //            $diff = $count - Cookie::get($politician->nick());
             $diff1 = $count - Session::get($politician->nick());
-            $politician->new = $diff1;
+            $politician->new = $politician->nick();
 //            $politician->new1 = $diff;
         }
 //        if($this->areCookiesEnabled()) {
