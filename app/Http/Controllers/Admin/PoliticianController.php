@@ -41,9 +41,9 @@ class PoliticianController extends Controller
         $politician = new Politician();
         $politician->name = $request->input('name');
         $politician->surname = $request->input('surname');
-//        if($request->input('username', false)) {
-//            $politician->username = $request->input('username');
-//        }
+        if($request->input('username', false)) {
+            $politician->username = $request->input('username');
+        }
         $politician->nick = $request->input('nick');
         $politician->image = $request->input('image');
         $politician->save();
@@ -89,7 +89,16 @@ class PoliticianController extends Controller
      */
     public function update(Request $request, Politician $politician)
     {
-        //
+        $politician->name = $request->input('name');
+        $politician->surname = $request->input('surname');
+        if($request->input('username', false)) {
+            $politician->username = $request->input('username');
+        }
+        $politician->nick = $request->input('nick');
+        $politician->image = $request->input('image');
+        $politician->save();
+
+        return redirect()->route('politician.index');
     }
 
     /**
