@@ -21,7 +21,7 @@ class Head extends Component
         $this->url = url()->full();
         $this->type = "website";
         if($this->text != null) {
-            $this->description = Str::contains($this->title, $this->text) ? $this->text : $this->text->firstWords(25);
+            $this->description = Str::contains($this->title, $this->text) ? $this->text : Str::words($this->text, 25);
             $this->type = "article";
 
         } else if($this->politician != null){
