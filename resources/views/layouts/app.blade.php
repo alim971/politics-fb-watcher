@@ -48,7 +48,7 @@
                             document.getElementById('showBlocked').className = 'text-center'
                         }
                     }, 500)
-                } else {
+                } else if(document.getElementsByTagName('iframe')[0] !== undefined){
                     if (document.getElementsByTagName('iframe')[0].clientHeight === 0) {
                         // adblocker detected, show fallback
                         document.getElementById('showBlocked').className = 'text-center'
