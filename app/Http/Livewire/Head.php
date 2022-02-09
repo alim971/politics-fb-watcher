@@ -25,12 +25,12 @@ class Head extends Component
             $this->type = "article";
 
         } else if($this->politician != null){
-            $this->title = 'Príspevky od ' .$this->politician->fullName();
-            $this->description = 'Nové facebook príspevky od ' .$this->politician->fullName();
+            $this->title = 'Príspevky od: ' .$this->politician->fullName();
+            $this->description = 'Nové facebook príspevky od:' .$this->politician->fullName();
             $this->img = $this->politician->image;
         } else {
             $this->title = 'Vec verejná - Res Publica';
-            $this->description = 'Sledovač facebook príspevkov rôznych politikov';
+            $this->description = 'Sledovač príspevkov na facebooku od rôznych politikov';
         }
         return view('livewire.head', [
             'url' => $this->url,
