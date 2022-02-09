@@ -41,7 +41,7 @@
         <x-jet-banner />
         <script type="text/javascript">
             window.addEventListener('load', function () {
-                if(document.getElementsByClassName('neterror').length  !== 0 ){
+                if(document.getElementsByTagName('iframe')[0].clientHeight === 0){
                     // adblocker detected, show fallback
                     document.getElementById('showBlocked').className = 'text-center'
                 }
