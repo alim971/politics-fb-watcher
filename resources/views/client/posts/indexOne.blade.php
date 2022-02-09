@@ -5,7 +5,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6">
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center">
+                    <div class="flex items-center" style="overflow-wrap: anywhere">
                         <svg aria-label="{{$politician->fullName()}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
                             <mask id="jsc_c_2">
                                 <circle cx="84" cy="84" fill="white" r="84"></circle>
