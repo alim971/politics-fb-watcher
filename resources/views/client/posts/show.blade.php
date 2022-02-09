@@ -66,8 +66,8 @@
                         </div>
                         @endif
                         <div id="showBlocked" class="hidden">
-                            Na zobrazenie Facebook komentárov je potrebné vypnúť AdBlock.<br />
-                            Táto stránka neobsahuje žiadne reklamy, preto ju môžete pridať do AdBlocku ako výnimku. <br />
+                            Na zobrazenie Facebook komentárov je byť prihlásený na Facebooku v browseri.<br />
+                            Ak chcete zanechať odkaz, ktorý sa dá zdieľať, prosím, prihláste sa na Facebook. <br />
                             Ďakujem.
                         </div>
                     </div>
