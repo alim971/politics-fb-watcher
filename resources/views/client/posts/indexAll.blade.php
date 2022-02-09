@@ -50,13 +50,7 @@
                                         </td>
                                         <td class="px-6 py-4 ">
                                             <div class="flex items-center hover:zoom-11">
-                                                @if($post->photo != null)
-                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                        <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
-                                                            <img class="h-10 w-10 rounded-full shadow" src="data:image/png;base64,{{ base64_encode($post->photo) }}" alt="Photo from FB post">
-                                                        </a>
-                                                    </div>
-                                                @elseif($post->img != null)
+                                                @if($post->img != null)
                                                 <div class="flex-shrink-0 h-10 w-10">
                                                     <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
                                                         <img class="h-10 w-10 rounded-full shadow" src="{{ $post->img }}" alt="Photo from FB post">
