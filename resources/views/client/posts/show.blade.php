@@ -29,10 +29,10 @@
                             </div>
                         </div>
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                            <span class="text-sm text-gray-400">Predchádzajúci príspevok</span>
                             @if($id > $first)
-                            <a href="{{ route('oneHelper', ['politician' => $politician, 'post' => $id - 1, 'plus' => '0']) }}" class="btn btn-primary"><i
-                                    class="fa fa-arrow-left"></i></a>
+                                <span class="text-sm text-gray-400">Predchádzajúci príspevok</span>
+                                <a href="{{ route('oneHelper', ['politician' => $politician, 'post' => $id - 1, 'plus' => '0']) }}" class="btn btn-primary"><i
+                                        class="fa fa-arrow-left"></i></a>
                             @endif
                             @if($id < $last)
                             <a href="{{ route('oneHelper', ['politician' => $politician, 'post' => $id + 1, 'plus' => '1']) }}" class="btn btn-primary"><i

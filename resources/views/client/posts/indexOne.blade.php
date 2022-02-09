@@ -28,12 +28,12 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                        <button class="btn btn-blue">
-                            <a href="{{ route('indexAll') }}" class="btn btn-primary"><i
-                                    class="fa fa-arrow-left"></i></a>
-                        </button>
+                        <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
+                            <button class="btn btn-blue">
+                                <a href="{{ route('indexAll') }}" class="btn btn-primary"><i
+                                        class="fa fa-arrow-left"></i></a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
