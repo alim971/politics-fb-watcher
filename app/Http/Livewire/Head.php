@@ -12,7 +12,7 @@ class Head extends Component
     public $type;
     public $title;
     public $description;
-    public $image;
+    public $img;
     public $politician;
     public $text;
 
@@ -27,7 +27,7 @@ class Head extends Component
         } else if($this->politician != null){
             $this->title = 'Príspevky od ' .$this->politician->fullName();
             $this->description = 'Nové facebook príspevky od ' .$this->politician->fullName();
-            $this->image = $this->politician->image;
+            $this->img = $this->politician->image;
         } else {
             $this->title = 'Vec verejná - Res Publica';
             $this->description = 'Sledovač facebook príspevkov rôznych politikov';
@@ -37,7 +37,7 @@ class Head extends Component
             'type' => $this->type,
             'title' => $this->title,
             'description' => $this->description,
-            'image' => $this->image,
+            'image' => $this->img,
         ]);
     }
 }
