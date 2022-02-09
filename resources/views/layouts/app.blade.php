@@ -39,17 +39,6 @@
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=1177874132956217&autoLogAppEvents=1" nonce="4C20h8kE"></script>
         <x-jet-banner />
-        <script type="text/javascript">
-            window.addEventListener('load', function () {
-                document.getElementsByTagName('iframe')[0].addEventListener('load', function () {
-                    // if(document.getElementsByTagName('iframe')[0].clientHeight === 0){
-                    //     // adblocker detected, show fallback
-                    //     document.getElementById('showBlocked').className = 'text-center'
-                    // }
-                    alert('aaa')
-                })
-            })
-        </script>
 
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
@@ -72,5 +61,16 @@
         @stack('modals')
 
         @livewireScripts
+    <script type="text/javascript">
+        window.addEventListener('load', function () {
+            document.getElementsByTagName('iframe')[0].addEventListener('load', function () {
+                // if(document.getElementsByTagName('iframe')[0].clientHeight === 0){
+                //     // adblocker detected, show fallback
+                //     document.getElementById('showBlocked').className = 'text-center'
+                // }
+                alert('aaa')
+            })
+        })
+    </script>
     </body>
 </html>
