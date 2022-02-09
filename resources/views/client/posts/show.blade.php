@@ -71,6 +71,7 @@
                         </div>
                         @endif
                         <div id="showBlocked" class="hidden">
+                            <br/>
                             Na zobrazenie Facebook komentárov je byť prihlásený na Facebooku v browseri.<br />
                             Ak chcete zanechať odkaz, ktorý sa dá zdieľať, prosím, prihláste sa na Facebook. <br />
                             Ďakujem.
