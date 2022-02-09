@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="head">
+        <livewire:head
+        />
+    </x-slot>
     <x-slot name="header">
         <h2 class="pull-left font-semibold text-xl text-gray-800 leading-tight">
             Politici

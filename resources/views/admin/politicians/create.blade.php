@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="head">
+        <livewire:head
+        />
+    </x-slot>
     <form action="{{ route('politician.store') }}" method="post">
         @csrf
         <x-slot name="header">

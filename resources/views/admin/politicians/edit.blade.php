@@ -1,4 +1,8 @@
 <x-app-layout>
+    <x-slot name="head">
+        <livewire:head
+        />
+    </x-slot>
     <form action="{{ route('politician.update', ['politician' => $politician]) }}" method="post">
         @csrf
         @method('PUT')

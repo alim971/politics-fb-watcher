@@ -1,6 +1,12 @@
 <x-app-layout>
     <livewire:politics-navigation />
-
+    <x-slot name="head">
+        <livewire:head
+            :title="$politician->fullName() . ': ' . $title"
+            :text="$text ? $text : $title"
+            :img="$phoho ?? $img ?? $politician->image"
+        />
+    </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <br class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
