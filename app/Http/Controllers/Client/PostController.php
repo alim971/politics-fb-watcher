@@ -156,6 +156,7 @@ class PostController extends Controller
             'politician' => $politician,
             'date' => $post->date,
             'img' => $post->img,
+            'photo' => $post->photo,
             'title' => $text[0],
             'text' => nl2br($text[1] ?? ""),
             'id' => $postId,
