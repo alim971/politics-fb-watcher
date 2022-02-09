@@ -4,7 +4,7 @@
         <livewire:head
             :title="$politician->fullName() . ': ' . $title"
             :text="$text ? $text : $title"
-            :img="$phoho ?? $img ?? $politician->image"
+            :img="$photo ?? $img ?? $politician->image"
         />
     </x-slot>
     <div class="py-12">
