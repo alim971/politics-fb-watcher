@@ -83,7 +83,7 @@
                                             <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
                                                 <div {{ $post->img == null && $post->photo == null ? 'style=margin-left:3.5rem;' : 'class=ml-4'}} >
                                                     <div class="text-sm text-gray-900 ">
-                                                        {{ $post->firstWords(25) }}
+                                                        {!! $post->firstWords(25)  !!}
                                                     </div>
                                                 </div>
                                             </a>
