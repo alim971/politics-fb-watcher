@@ -103,52 +103,76 @@ class PostController extends Controller
 
     public function showOneFrom(Politician $politician, $postId, $plus = "true")
     {
+        $postId = (int) $postId;
+
+        $table = new Post;
+        $table->setTable($politician->nick());
+        $posts = $table->get()->sortByDesc('date');
+        $current = $posts->find($plus ? $postId - 1 : $postId + 1);
+
+        $first = $posts->last()->id;
+        $last = $posts->first()->id;
+        $tmpId = $postId;
+        if($plus) {
+            while(!$posts->contains('id', $tmpId) || ($posts->contains('id', $tmpId + 1) && $posts->find($tmpId + 1)->edit)) {
+                if($tmpId >= $last) {
+                    break;
+                }
+                $tmpId++;
+//                $posts->where('id', $tmpId + 1)->
+            }
+        } else {
+            while(!$posts->contains('id', $tmpId) || ($current->edit && !$posts->find($tmpId)->edit)) {
+                if($tmpId <= $first) {
+                    break;
+                }
+                $tmpId--;
+//                $posts->where('id', $tmpId + 1)->
+            }
+        }
+        $next = $posts->find($tmpId);
+//        $nextMin = $last - $first;
+//        $next = null;
+//        foreach ($posts as $post) {
+//            $diff = $post->id - $postId;
+//            if(($diff > 0 && $plus) || ($diff < 0 && !$plus)) {
+//                if($nextMin > abs($diff)) {
+//                    $nextMin = $diff;
+//                    $next = $post;
+//                }
+//            }
+//            if($post->id == $postId) {
+//                if(!$posts->contains('id', $postId + 1) || !$posts[$postId + 1]->edit) {
+//                    $next = $post;
+//                    break;
+//                }
+//                $index = $postId;
+//                while($posts->contains('id', $postId + 1) && $posts[$index + 1]->edit) {
+//                    $index++;
+//                }
+//                $next = $posts[$index];
+//                break;
+//            }
+//
+//        }
+        return redirect()
+            ->route('showPost', ['politician' => $politician, 'post' => $next->id])
+            ->with(['first' => $first, 'last' => $last]);
+    }
+
+    public function show(Politician $politician, $postId) {
         $table = new Post;
         $table->setTable($politician->nick());
 
         $posts = $table->get()->sortByDesc('date');
-        $first = $posts->last()->id;
-        $last = $posts->first()->id;
-        $nextMin = $last - $first;
-        $next = null;
-        foreach ($posts as $index => $post) {
-            $diff = $post->id - $postId;
-            if(($diff > 0 && $plus) || ($diff < 0 && !$plus)) {
-                if($nextMin > abs($diff)) {
-                    $nextMin = $diff;
-                    $next = $post;
-                }
-            }
-            if($post->id == $postId) {
-                if($posts->count() == $postId || !$posts[$index + 1]->edit) {
-                    $next = $post;
-                    break;
-                }
-                $next = $posts[$index + 1];
-                break;
-            }
 
-        }
-        return redirect()
-            ->route('showPost', ['politician' => $politician, 'post' => $next->id])
-            ->with(['post' => $next, 'first' => $first, 'last' => $last]);
-    }
-
-    public function show(Politician $politician, $postId) {
+        $post = $posts->find($postId);
         $first = Session::get('first');
         if($first == null) {
-            $table = new Post;
-            $table->setTable($politician->nick());
-
-            $posts = $table->get()->sortByDesc('date');
-
             $first = $posts->last()->id;
             $last = $posts->first()->id;
-
-            $post = $posts->firstWhere('id', $postId);
         } else {
             $last = Session::get('last');
-            $post = Session::get('post');
         }
         $text = explode("\n", $post->text,2);
 
