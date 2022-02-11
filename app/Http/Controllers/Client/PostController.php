@@ -122,7 +122,7 @@ class PostController extends Controller
 //                $posts->where('id', $tmpId + 1)->
             }
         } else {
-            while(!$posts->contains('id', $tmpId) || ($current->edit && !$posts->find($tmpId)->edit)) {
+            while(!$posts->contains('id', $tmpId) || ($posts->contains('id', $tmpId + 1) && $posts->find($tmpId + 1)->edit)) {
                 if($tmpId <= $first) {
                     break;
                 }
