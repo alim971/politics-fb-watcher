@@ -175,7 +175,7 @@ class PostController extends Controller
             $last = Session::get('last');
         }
         $text = explode("\n", $post->text,2);
-        $url = Request::url();
+//        $url = Request::url();
 //        if($post->edit) {
 //            $tmpId = $post->id - 1;
 //            while(!$posts->contains('id', $tmpId) || ($posts->find($tmpId)->edit)) {
@@ -194,7 +194,7 @@ class PostController extends Controller
             'id' => $postId,
             'first' => $first,
             'last' => $last,
-            'www' => 'aaaa'
+//            'url' => $url
         ]);
     }
 }
