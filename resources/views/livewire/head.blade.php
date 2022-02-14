@@ -19,6 +19,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+{{--    @if($editor)--}}
+{{--        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>--}}
+{{--    @endif--}}
 
 @livewireStyles
 

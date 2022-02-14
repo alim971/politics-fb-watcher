@@ -15,6 +15,9 @@
                     <x-jet-nav-link href="{{ route('indexAll') }}" :active="request()->fullUrlIs(route('indexAll') . '*')">
                         {{ __('Politici') }}
                     </x-jet-nav-link>
+{{--                    <x-jet-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">--}}
+{{--                        {{ __('Reakcie') }}--}}
+{{--                    </x-jet-nav-link>--}}
                 </div>
             </div>
 
@@ -146,9 +149,12 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('indexAll') }}" :active="request()->routeIs('indexAll')">
+            <x-jet-responsive-nav-link href="{{ route('indexAll') }}" :active="request()->fullUrlIs(route('indexAll') . '*')">
                 {{ __('Politici') }}
             </x-jet-responsive-nav-link>
+{{--            <x-jet-responsive-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">--}}
+{{--                {{ __('Reakcie') }}--}}
+{{--            </x-jet-responsive-nav-link>--}}
         </div>
 
         <!-- Responsive Settings Options -->
