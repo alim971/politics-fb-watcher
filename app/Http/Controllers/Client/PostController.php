@@ -194,7 +194,7 @@ class PostController extends Controller
             'id' => $postId,
             'first' => $first,
             'last' => $last,
-            'url' => 'aaaa'
+            'www' => 'aaaa'
         ]);
     }
 }
