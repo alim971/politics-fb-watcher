@@ -175,6 +175,14 @@ class PostController extends Controller
             $last = Session::get('last');
         }
         $text = explode("\n", $post->text,2);
+        $url = Request::url();
+        if($post->edit) {
+            $tmpId = $post->id - 1;
+            while(!$posts->contains('id', $tmpId) || ($posts->find($tmpId)->edit)) {
+                $tmpId--;
+            }
+            $url = str_replace("$$post->id", "$tmpId", $url);
+        }
 
         return view('client.posts.show', [
             'politician' => $politician,
@@ -186,6 +194,7 @@ class PostController extends Controller
             'id' => $postId,
             'first' => $first,
             'last' => $last,
+            'url' => $url
         ]);
     }
 }
