@@ -181,7 +181,7 @@ class PostController extends Controller
             while(!$posts->contains('id', $tmpId) || ($posts->find($tmpId)->edit)) {
                 $tmpId--;
             }
-            $url = str_replace("$$post->id", "$tmpId", $url);
+            $url = str_replace("$post->id", "$tmpId", $url);
         }
 
         return view('client.posts.show', [
