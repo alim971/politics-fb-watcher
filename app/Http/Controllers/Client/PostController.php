@@ -8,10 +8,10 @@ use App\Models\LastUpdate;
 use App\Models\Politician;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
@@ -175,14 +175,14 @@ class PostController extends Controller
             $last = Session::get('last');
         }
         $text = explode("\n", $post->text,2);
-//        $url = Request::url();
-//        if($post->edit) {
-//            $tmpId = $post->id - 1;
-//            while(!$posts->contains('id', $tmpId) || ($posts->find($tmpId)->edit)) {
-//                $tmpId--;
-//            }
-//            $url = str_replace("$post->id", "$tmpId", $url);
-//        }
+        $url = Request::url();
+        if($post->edit) {
+            $tmpId = $post->id - 1;
+            while(!$posts->contains('id', $tmpId) || ($posts->find($tmpId)->edit)) {
+                $tmpId--;
+            }
+            $url = str_replace("$post->id", "$tmpId", $url);
+        }
 
         return view('client.posts.show', [
             'politician' => $politician,
@@ -194,7 +194,7 @@ class PostController extends Controller
             'id' => $postId,
             'first' => $first,
             'last' => $last,
-//            'url' => $url
+            'url' => $url
         ]);
     }
 }
