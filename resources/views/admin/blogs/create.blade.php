@@ -37,6 +37,7 @@
                                 </div>
 
                                 <div class="ml-12">
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i class="fa fa-floppy-o"></i></button>
 {{--                                    <div class="mt-2 text-sm text-gray-500">--}}
 {{--                                        Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.--}}
 {{--                                    </div>--}}
