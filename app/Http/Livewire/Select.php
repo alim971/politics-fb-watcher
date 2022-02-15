@@ -36,6 +36,10 @@ class Select extends Component
 
     public function updatedSelectedPost($post)
     {
+        if(!$post) {
+            $this->text = NULL;
+            return;
+        }
         $table = new Post;
         $table->setTable(Politician::find($this->selectedPolitician)->nick());
         $this->text = nl2br($table->find($post)->text);
