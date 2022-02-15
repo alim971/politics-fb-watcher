@@ -8,25 +8,36 @@ use Livewire\Component;
 
 class Select extends Component
 {
-    public $politicianId;
-    public $postId;
+    public $politicians;
+//    public $posts;
+    public $text;
 
-    public function changeEvent($value)
+    public $selectedPolitician;
+    public $selectedPost = null;
+
+    public function mount()
     {
-        $this->politicianId = $value;
+        $this->politicians = Politician::all();
+//        $this->posts = collect();
+        $this->selectedPolitician = null;
+        $this->selectedPost = null;
     }
 
     public function render()
     {
-        if($this->politicianId) {
-            $posts = $table = new Post;
-            $table->setTable(Politician::find($this->politicianId)->nick());
-        }
-        return view('livewire.select', [
-            'politicians' => Politician::all(),
-            'politicianId' => $this->politicianId,
-            'posts' => $posts ? $posts->get() : null,
-            'postId' => $this->postId,
-        ]);
+        return view('livewire.select');
+    }
+
+    public function updatedSelectedPolitician($politician)
+    {
+        $this->selectedPost = NULL;
+        $this->text = NULL;
+    }
+
+    public function updatedSelectedPost($post)
+    {
+        $table = new Post;
+        $table->setTable(Politician::find($this->selectedPolitician)->nick());
+        $this->text = nl2br($table->find($post)->text);
     }
 }

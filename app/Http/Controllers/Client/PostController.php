@@ -108,7 +108,6 @@ class PostController extends Controller
         $table = new Post;
         $table->setTable($politician->nick());
         $posts = $table->get()->sortByDesc('date');
-        $current = $posts->find($plus ? $postId - 1 : $postId + 1);
 
         $first = $posts->last()->id;
         $last = $posts->first()->id;
