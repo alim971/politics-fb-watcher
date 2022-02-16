@@ -86,14 +86,14 @@
                                             <a href="{{ route('showBlog', ['blog' => $blog]) }}">
                                                 <div class="ml-4" >
                                                     <div class="text-sm text-gray-900 ">
-                                                        {!! $blog->firstWords(25)  !!}
+                                                        {!! $blog->title  !!}
                                                     </div>
                                                 </div>
                                             </a>
 
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <td class="px-6 py-4">
                                         <div class="flex items-center hover:zoom-11">
                                             <a href="{{ route('showPost', ['politician' => $blog->politician, 'post' => $blog->post()]) }}">
                                                 <div {{ $blog->post()->img == null && $blog->post()->photo == null ? 'style=margin-left:3.5rem;' : 'class=ml-4'}} >

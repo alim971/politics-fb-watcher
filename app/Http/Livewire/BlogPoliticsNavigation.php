@@ -20,7 +20,7 @@ class BlogPoliticsNavigation extends Component
     {
         $politicians = Politician::all();
         $url = explode('/', url()->current());
-        $blog = count($url) < 5 ? null : Blog::where('title', $url[4])->first();
+        $blog = count($url) < 5 || $url[4] == 'na' ? null : Blog::where('title', $url[4])->first();
 //        $all = null;
         foreach ($politicians as $politician) {
             $count = Blog::where('politician_id', $politician->id)->get()->count();
@@ -41,6 +41,9 @@ class BlogPoliticsNavigation extends Component
                     }
                 }
 //            $diff = $count - Cookie::get($politician->nick());
+            } else if(array_key_exists(5, $url) && $url[5] == $politician->username){
+                Session::put($politician->nick() . '_blog', $count);
+
             }
             $diff1 = $count - Session::get($politician->nick() . '_blog');
             $politician->new = $diff1;

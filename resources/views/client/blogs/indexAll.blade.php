@@ -38,13 +38,13 @@
                                                 <a href="{{ route('showBlog', ['blog' => $blog]) }}">
                                                     <div  class="ml-4" >
                                                         <div class="text-sm text-gray-900 ">
-                                                            {!! $blog->firstWords(15)  !!}
+                                                            {!! $blog->title  !!}
                                                         </div>
                                                     </div>
                                                 </a>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <td class="px-6 py-4">
                                             @if($blog->politician)
                                             <div class="flex items-center">
                                                 <a href="{{ route('blogOne', ['politician' => $blog->politician]) }}">
