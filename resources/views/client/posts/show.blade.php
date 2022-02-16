@@ -42,6 +42,7 @@
                                         <div class="text-sm text-gray-900 hover:zoom-11 inline-flex">
                                             {!! $reaction->title  !!}
                                         </div>
+                                        <i class="fa fa-external-link"></i>
                                     </a>
                                 </div>
                                 @endif
