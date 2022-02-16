@@ -40,6 +40,10 @@ class Select extends Component
             $this->text = NULL;
             return;
         }
+        if(!$this->selectedPolitician) {
+            $this->updatedSelectedPolitician(null);
+            return;
+        }
         $table = new Post;
         $table->setTable(Politician::find($this->selectedPolitician)->nick());
         $this->text = nl2br($table->find($post)->text);
