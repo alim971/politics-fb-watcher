@@ -3,6 +3,7 @@
     <x-slot name="head">
         <livewire:head
             :politician="$politician"
+            :app="'Reakcie, ' . config('app.name', 'Laravel')"
         />
     </x-slot>
     <div class="py-12">

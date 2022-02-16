@@ -5,6 +5,7 @@
             :title="$blog->politician ? 'Reakcia na ' . $blog->politician->fullName() . ': ' . strip_tags($blog->title) : strip_tags($blog->title)"
             :text="strip_tags($blog->firstWords(15))"
             :img="$img ?? $blog->politician->image"
+            :app="'Reakcie, ' . config('app.name', 'Laravel')"
         />
     </x-slot>
     <div class="py-12">

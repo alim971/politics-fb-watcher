@@ -2,6 +2,7 @@
     <livewire:blog-politics-navigation />
     <x-slot name="head">
         <livewire:head
+            :app="'Reakcie, ' . config('app.name', 'Laravel')"
         />
     </x-slot>
     <div class="py-12">

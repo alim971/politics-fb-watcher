@@ -15,6 +15,7 @@ class Head extends Component
     public $img;
     public $politician;
     public $text;
+    public $app = null;
     public $cke = null;
 
     public function render()
