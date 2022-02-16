@@ -20,6 +20,9 @@
                                             Článok
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Reakcia
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Dátum
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
@@ -76,6 +79,20 @@
 
                                             </div>
                                         </td>
+                                        <td class="px-6 py-4">
+                                            @php
+                                            $reaction = $post->reaction();
+                                            @endphp
+                                            @if($reaction)
+                                                <a href="{{ route('showBlog', ['blog' => $reaction]) }}" class="hover:zoom-11">
+                                                    <div class="text-sm text-gray-900 ">
+                                                        {!! $reaction->title  !!}
+                                                    </div>
+                                                </a>
+                                            @else
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 shadow">Žiadna</span>
+                                            @endif
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <span title="{{ $post->date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 shadow">
                                               {{ $post->date->diffForHumans() }}
@@ -90,14 +107,14 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap col-span-4">
+                                            <td class="px-6 py-4 whitespace-nowrap" colspan="5">
                                                 Zatiaľ neboli publikované žiadne príspevky
                                             </td>
                                         </tr>
                                     @endforelse
                                     @if($posts->hasPages())
                                         <tr>
-                                            <td class="text-center" colspan="4">{{ $posts->onEachSide(2)->links() }}</td>
+                                            <td class="text-center" colspan="5">{{ $posts->onEachSide(2)->links() }}</td>
                                         </tr>
                                     @else
                                         <tr>

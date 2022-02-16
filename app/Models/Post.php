@@ -45,4 +45,10 @@ class Post extends Model
         $politician =  Politician::firstWhere('nick', $this->getTable());
         return $politician ?? Politician::firstWhere('username', $this->getTable());
     }
+
+    public function reaction() {
+        $politician =  $this->politician();
+        $blog = Blog::where('post_id',$this->id)->where('politician_id', $politician->id)->first();
+        return $blog;
+    }
 }
