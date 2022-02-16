@@ -18,9 +18,6 @@ class Select extends Component
     public function mount()
     {
         $this->politicians = Politician::all();
-//        $this->posts = collect();
-        $this->selectedPolitician = null;
-        $this->selectedPost = null;
     }
 
     public function render()

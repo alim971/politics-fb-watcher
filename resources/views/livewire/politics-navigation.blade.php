@@ -4,7 +4,7 @@
             <!-- Navigation Links -->
             @foreach($politicians as $politician)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex" style="min-height: 50px">
-                    <x-jet-nav-link href="{{ route('indexOne', $politician) }}" :active="request()->fullUrlIs(route('indexOne', $politician))">
+                    <x-jet-nav-link href="{{ route($route, $politician) }}" :active="request()->fullUrlIs(route($route, $politician))">
                         {{ $politician->fullName() }}
                         @if($politician->new)
                         <div class="notification shadow">
@@ -22,7 +22,7 @@
             @foreach($politicians as $politician)
                 @if ($loop->index < 3)
                     <div class="space-x-8 sm:-my-px py-2 sm:ml-6 sm:flex">
-                        <x-jet-responsive-nav-link href="{{ route('indexOne', $politician) }}" :active="request()->fullUrlIs(route('indexOne', $politician))">
+                        <x-jet-responsive-nav-link href="{{ route($route, $politician) }}" :active="request()->fullUrlIs(route($route, $politician))">
                             {{ $politician->fullName() }}
                             @if($politician->new)
                                 <div class="notification-mobile shadow">

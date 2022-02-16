@@ -15,6 +15,7 @@ class Head extends Component
     public $img;
     public $politician;
     public $text;
+    public $cke = null;
 
     public function render()
     {
@@ -32,12 +33,6 @@ class Head extends Component
             $this->title = 'Vec verejná - Res Publica';
             $this->description = 'Sledovač príspevkov na facebooku od rôznych politikov';
         }
-        return view('livewire.head', [
-            'url' => $this->url,
-            'type' => $this->type,
-            'title' => $this->title,
-            'description' => $this->description,
-            'image' => $this->img,
-        ]);
+        return view('livewire.head');
     }
 }

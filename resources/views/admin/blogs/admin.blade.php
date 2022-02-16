@@ -36,7 +36,7 @@
                                 @forelse($blogs as $blog)
                                     <tr>
                                         <td>{{ $blog->title }}</td>
-                                        <td>{{ Str::words(15, $blog->text) }}</td>
+                                        <td>{{ Str::words($blog->text, 15) }}</td>
                                         <td><svg aria-label="{{$blog->politician->nick}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
                                                 <mask id="jsc_c_2">
                                                     <circle cx="84" cy="84" fill="white" r="84"></circle>
@@ -47,7 +47,11 @@
                                                            alt="{{$blog->politician->nick}}">
                                                     </image>
                                                 </g>
-                                            </svg></td>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            {{ Str::words($blog->post()->text, 15) }}
+                                        </td>
                                         <td>
                                             <form action="{{ route('blog.destroy', ['blog' => $blog]) }}" class="inline" method="post">
                                                 @csrf

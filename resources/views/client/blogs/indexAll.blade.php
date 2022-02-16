@@ -1,5 +1,5 @@
 <x-app-layout>
-    <livewire:politics-navigation />
+    <livewire:blog-politics-navigation />
     <x-slot name="head">
         <livewire:head
         />
@@ -14,11 +14,14 @@
                                     <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Meno
+                                            Reakcia
                                         </th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Článok
+                                            Na
                                         </th>
+{{--                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">--}}
+{{--                                            Článok--}}
+{{--                                        </th>--}}
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Dátum
                                         </th>
@@ -28,63 +31,52 @@
                                     </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                    @forelse($posts as $post)
+                                    @forelse($blogs as $blog)
                                     <tr>
+                                        <td class="px-6 py-4 ">
+                                            <div class="flex items-center hover:zoom-11">
+                                                <a href="{{ route('showBlog', ['blog' => $blog]) }}">
+                                                    <div  class="ml-4" >
+                                                        <div class="text-sm text-gray-900 ">
+                                                            {!! $blog->firstWords(15)  !!}
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
+                                            @if($blog->politician)
                                             <div class="flex items-center">
-                                                <a href="{{ route('indexOne', ['politician' => $post->politician()]) }}">
+                                                <a href="{{ route('blogOne', ['politician' => $blog->politician]) }}">
                                                     <div class="flex-shrink-0 h-10 w-10">
-                                                        <img class="h-10 w-10 hover:zoom-12-origin rounded-full shadow" src="{{ $post->politician()->image }}" alt="{{ $post->politician()->fullName() }}">
+                                                        <img class="h-10 w-10 hover:zoom-12-origin rounded-full shadow" src="{{ $blog->politician->image }}" alt="{{ $blog->politician->fullName() }}">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900 hover:zoom-12">
-                                                            {{ $post->politician()->fullName() }}
+                                                            {{ $blog->politician->fullName() }}
                                                             <i class="fa fa-external-link"></i>
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            <a href="https://www.facebook.com/{{ $post->politician()->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
-                                                                https://www.facebook.com/{{ $post->politician()->nick }}
+                                                            @if($blog->post())
+                                                            <a href="{{ route('showPost', ['politician' => $blog->politician, 'post' => $blog->post()]) }}" class="text-gray-500 hover:text-gray-900">
+                                                                {!! $blog->post()->firstWords(10)  !!}
                                                             </a>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </a>
-
                                             </div>
-                                        </td>
-                                        <td class="px-6 py-4 ">
-                                            <div class="flex items-center hover:zoom-11">
-                                                @if($post->photo != null)
-                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                        <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
-                                                            <img class="h-10 w-10 rounded-full shadow" src="data:image/png;base64,{{ base64_encode($post->photo) }}" alt="Photo from FB post">
-                                                        </a>
-                                                    </div>
-                                                @elseif($post->img != null)
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
-                                                        <img class="h-10 w-10 rounded-full shadow" src="{{ $post->img }}" alt="Photo from FB post">
-                                                    </a>
-                                                </div>
-                                                @endif
-                                                <a href="{{ route('showPost', ['politician' => $post->politician(), 'post' => $post]) }}">
-                                                    <div {{ $post->img == null && $post->photo == null ? 'style=margin-left:3.5rem;' : 'class=ml-4'}} >
-                                                        <div class="text-sm text-gray-900 ">
-                                                            {!! $post->firstWords(15)  !!}
-                                                        </div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
+                                            @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span title="{{ $post->date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 shadow">
-                                              {{ $post->date->diffForHumans() }}
+                                            <span title="{{ $blog->updated_at->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 shadow">
+                                              {{ $blog->updated_at->diffForHumans() }}
                                             </span>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <livewire:new-post-notification
-                                                :isNew="$post->isNew"
-                                                :route="route('showPost', ['politician' => $post->politician(), 'post' => $post])"
+                                                :isNew="$blog->updated_at->gt(\Illuminate\Support\Facades\Session::get('update_time_blog', \Illuminate\Support\Carbon::now()->toCookieString()))"
+                                                :route="route('showBlog', ['blog' => $blog])"
                                             />
                                         </td>
                                     </tr>
@@ -95,9 +87,9 @@
                                             </td>
                                         </tr>
                                     @endforelse
-                                    @if($posts->hasPages())
+                                    @if($blogs->hasPages())
                                         <tr>
-                                            <td class="text-center" colspan="4">{{ $posts->onEachSide(2)->links() }}</td>
+                                            <td class="text-center" colspan="4">{{ $blogs->onEachSide(2)->links() }}</td>
                                         </tr>
                                     @else
                                         <tr>

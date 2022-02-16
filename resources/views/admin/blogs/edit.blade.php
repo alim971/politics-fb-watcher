@@ -1,9 +1,10 @@
 <x-app-layout>
     <x-slot name="head">
         <livewire:head
+            :cke="true"
         />
     </x-slot>
-    <form action="{{ route('blog.store') }}" method="post">
+    <form action="{{ route('blog.store') }}" method="blog">
         @csrf
         <x-slot name="header">
             <h2 class="pull-left font-semibold text-xl text-gray-800 leading-tight">
@@ -63,7 +64,7 @@
                                 </div>
                                 <livewire:select
                                     :selected-politician="$blog->politician->id"
-                                    :selected-post="$blog->post->id"
+                                    :selected-post="$blog->post_id"
                                 />
                             </div>
 
@@ -78,7 +79,8 @@
 
                                 <div class="ml-12">
                                     <div class="mt-2 text-sm text-gray-500">
-                                        <textarea name="text" class="form-control" id="text" value="{{ old('text', $blog->text)}}">
+                                        <textarea name="text" class="form-control" id="text">
+                                            {{ old('text', $blog->text)}}
                                         </textarea>
                                     </div>
                                 </div>
@@ -89,6 +91,14 @@
             </div>
         </div>
     </form>
+    <x-slot name="scripts">
+        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.ckeditor').ckeditor();
+            });
+        </script>
+    </x-slot>
 </x-app-layout>
 
 

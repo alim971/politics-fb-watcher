@@ -38,12 +38,13 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $blog = new Blog();
+        $blog->url = $request->input('url');
         $blog->title = $request->input('title');
         $blog->text = $request->input('text');
         if($request->input('postId', false)) {
-            $blog->postId = $request->input('postId');
+            $blog->post_id = $request->input('postId');
 //            $blog->politician->associate($request->input('politicianId'))
-            $blog->politicianId = $request->input('politicianId');
+            $blog->politician_id = $request->input('politicianId');
         }
         $blog->save();
 

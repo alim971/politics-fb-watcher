@@ -19,6 +19,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @if($cke)
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    @endif
 {{--    @if($editor)--}}
 {{--        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>--}}
 {{--    @endif--}}
@@ -32,8 +35,8 @@
     <meta property="og:type"               content="{{ $type }}" />
     <meta property="og:title"              content="{{ $title }}" />
     <meta property="og:description"        content="{{ $description }}" />
-    @if($image != null)
-    <meta property="og:image"              content="{{ $image }}" />
+    @if($img != null)
+    <meta property="og:image"              content="{{ $img }}" />
     @endif
     <meta property="og:locale"              content="sk" />
     <meta property="fb:app_id"              content="1177874132956217" />

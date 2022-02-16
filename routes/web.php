@@ -35,8 +35,10 @@ Route::group(['prefix' => '/politici'], function () {
 
 Route::group(['prefix' => '/reakcie'], function () {
     Route::get('/', [\App\Http\Controllers\Client\BlogController::class, 'showAll'])->name('blogAll');
-    Route::get('/from/{politician}', [\App\Http\Controllers\Client\BlogController::class, 'showAllFrom'])->name('blogOne');
+    Route::get('/na/{politician}', [\App\Http\Controllers\Client\BlogController::class, 'showAllFrom'])->name('blogOne');
     Route::get('/{blog}', [\App\Http\Controllers\Client\BlogController::class, 'show'])->name('showBlog');
+    Route::get('/{blog}/{plus}', [\App\Http\Controllers\Client\BlogController::class, 'oneHelper'])->name('oneBlogHelper');
+
 });
 
 Route::get('/', function () {
