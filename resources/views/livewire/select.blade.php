@@ -9,7 +9,7 @@
             @endforeach
         </select>
     </div>
-    @if(!is_null($selectedPolitician))
+    @if($selectedPolitician)
     <div class="form-group">
         <label for="postId"
                class="control-label">Post</label>
