@@ -82,7 +82,7 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap col-span-4">
+                                            <td class="px-6 py-4 whitespace-nowrap" colspan="4">
                                                 Zatiaľ neboli publikované žiadne príspevky
                                             </td>
                                         </tr>
@@ -96,7 +96,7 @@
                                             @php
                                                 $date = \App\Models\LastUpdate::latest()->first()->created_at;
                                             @endphp
-                                            <td class="text-right px-6 py-4" colspan="6" title="{{ $date->isoFormat('LLLL') }}">
+                                            <td class="text-right px-6 py-4" colspan="4" title="{{ $date->isoFormat('LLLL') }}">
                                                 <p class="text-sm text-gray-700 leading-5">
                                                     Naposledy kontrolované
                                                     {{ $date->diffForHumans() }}
