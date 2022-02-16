@@ -2,8 +2,8 @@
     <livewire:blog-politics-navigation />
     <x-slot name="head">
         <livewire:head
-            :title="$blog->politician ? 'Reakcia na ' . $blog->politician->fullName() . ': ' . $blog->title : $blog->title"
-            :text="$blog->firstWords(15)"
+            :title="$blog->politician ? 'Reakcia na ' . $blog->politician->fullName() . ': ' . strip_tags($blog->title) : strip_tags($blog->title)"
+            :text="strip_tags($blog->firstWords(15))"
             :img="$img ?? $blog->politician->image"
         />
     </x-slot>
