@@ -32,6 +32,19 @@
                                 <div title="{{ $date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     {{ $date->isoFormat('LLLL') }}
                                 </div>
+                                @if($reaction)
+                                <div class="mt-2">
+                                    <div class="px-2 leading-5 text-sm font-semibold inline-flex rounded-full bg-red-100 mt-2">
+                                        Reakcia:
+                                    </div>
+
+                                    <a href="{{ route('showBlog', ['blog' => $reaction]) }}">
+                                        <div class="text-sm text-gray-900 hover:zoom-11 inline-flex">
+                                            {!! $reaction->title  !!}
+                                        </div>
+                                    </a>
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">

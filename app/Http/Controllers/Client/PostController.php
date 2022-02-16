@@ -193,7 +193,8 @@ class PostController extends Controller
             'id' => $postId,
             'first' => $first,
             'last' => $last,
-            'url' => $url
+            'url' => $url,
+            'reaction' => $post->reaction(),
         ]);
     }
 }

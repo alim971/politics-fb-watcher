@@ -98,8 +98,8 @@
                                             $reaction = $post->reaction();
                                         @endphp
                                         @if($reaction)
-                                            <a href="{{ route('showBlog', ['blog' => $reaction]) }}" class="hover:zoom-11">
-                                                <div class="text-sm text-gray-900 ">
+                                            <a href="{{ route('showBlog', ['blog' => $reaction]) }}">
+                                                <div class="text-sm text-gray-900 hover:zoom-11">
                                                     {!! $reaction->title  !!}
                                                 </div>
                                             </a>
