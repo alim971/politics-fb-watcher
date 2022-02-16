@@ -96,7 +96,7 @@
                                             @php
                                                 $date = \App\Models\LastUpdate::latest()->first()->created_at;
                                             @endphp
-                                            <td class="text-right px-6 py-4" colspan="4" title="{{ $date->isoFormat('LLLL') }}">
+                                            <td class="text-right px-6 py-4" colspan="6" title="{{ $date->isoFormat('LLLL') }}">
                                                 <p class="text-sm text-gray-700 leading-5">
                                                     Naposledy kontrolované
                                                     {{ $date->diffForHumans() }}
