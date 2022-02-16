@@ -30,7 +30,7 @@
                                     <tbody class="bg-white divide-y divide-gray-200">
                                     @forelse($posts as $post)
                                     <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <td class="px-6 py-4">
                                             <div class="flex items-center">
                                                 <a href="{{ route('indexOne', ['politician' => $post->politician()]) }}">
                                                     <div class="flex-shrink-0 h-10 w-10">
