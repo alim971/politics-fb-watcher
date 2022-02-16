@@ -25,6 +25,7 @@
                             <table class="table">
                                 <thead>
                                 <tr>
+                                    <th>Url</th>
                                     <th>Title</th>
                                     <th>Text</th>
                                     <th>Politician</th>
@@ -35,8 +36,9 @@
                                 <tbody>
                                 @forelse($blogs as $blog)
                                     <tr>
-                                        <td>{{ $blog->title }}</td>
-                                        <td>{{ Str::words($blog->text, 15) }}</td>
+                                        <td> {{ $blog->url }}</td>
+                                        <td> {!! $blog->title !!}</td>
+                                        <td> {!! Str::words($blog->text, 15) !!} </td>
                                         <td><svg aria-label="{{$blog->politician->nick}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
                                                 <mask id="jsc_c_2">
                                                     <circle cx="84" cy="84" fill="white" r="84"></circle>
