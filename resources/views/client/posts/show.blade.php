@@ -39,7 +39,7 @@
                                     </div>
 
                                     <a href="{{ route('showBlog', ['blog' => $reaction]) }}">
-                                        <div class="text-sm text-gray-900 hover:zoom-11 inline-flex">
+                                        <div class="text-gray-900 hover:zoom-11 inline-flex">
                                             {!! $reaction->title  !!}
                                             <i class="fa fa-external-link"></i>
                                         </div>
