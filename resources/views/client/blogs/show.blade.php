@@ -34,6 +34,18 @@
                                 <div title="{{ $blog->updated_at->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     {{ $blog->updated_at->isoFormat('LLLL') }}
                                 </div>
+                                <div class="mt-2">
+                                    <div class="px-2 leading-5 text-sm font-semibold inline-flex rounded-full bg-red-100 mt-2">
+                                        Pôvodný príspevok:
+                                    </div>
+
+                                    <a href="{{ route('showPost', ['post' => $blog->id, 'politician' => $blog->politician]) }}">
+                                        <div class="text-gray-900 hover:zoom-11 inline-flex" style="font-size: 1rem">
+                                            {!! $blog->post()->firstWords(15)  !!}
+                                            <i class="fa fa-external-link"></i>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     @endif

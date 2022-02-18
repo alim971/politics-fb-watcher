@@ -65,7 +65,7 @@ class BlogController extends Controller
      */
     public function showAll(Request $request)
     {
-        return view('client.blogs.indexAll', ['blogs' => Blog::paginate(10)]);
+        return view('client.blogs.indexAll', ['blogs' => Blog::latest()->paginate(10)]);
     }
 
     /**
@@ -78,7 +78,7 @@ class BlogController extends Controller
     public function showAllFrom(Politician $politician, Request $request)
     {
         return view('client.blogs.indexOne', [
-            'blogs' => Blog::where('politician_id', $politician->id)->paginate(10),
+            'blogs' => Blog::where('politician_id', $politician->id)->latest()->paginate(10),
             'politician' => $politician,
             ]);
     }
