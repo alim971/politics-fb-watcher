@@ -39,7 +39,7 @@
                                         Pôvodný príspevok:
                                     </div>
 
-                                    <a href="{{ route('showPost', ['post' => $blog->id, 'politician' => $blog->politician]) }}">
+                                    <a href="{{ route('showPost', ['post' => $blog->post_id, 'politician' => $blog->politician]) }}">
                                         <div class="text-gray-900 hover:zoom-11 inline-flex" style="font-size: 1rem">
                                             {!! $blog->post()->firstWords(15)  !!}
                                             <i class="fa fa-external-link"></i>
