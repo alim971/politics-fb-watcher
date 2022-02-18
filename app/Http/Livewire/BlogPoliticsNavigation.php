@@ -20,7 +20,7 @@ class BlogPoliticsNavigation extends Component
     {
         $politicians = Politician::all();
         $url = explode('/', url()->current());
-        $blog = count($url) < 5 || $url[4] == 'na' ? null : Blog::where('title', $url[4])->first();
+        $blog = count($url) < 5 || $url[4] == 'na' ? null : Blog::where('url', $url[4])->first();
 //        $all = null;
         foreach ($politicians as $politician) {
             $count = Blog::where('politician_id', $politician->id)->get()->count();
