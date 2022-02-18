@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::paginate(10);
+        $blogs = Blog::latest()->paginate(10);
         return view('admin.blogs.admin', ['blogs' => $blogs]);
     }
 
