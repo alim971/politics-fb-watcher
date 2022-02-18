@@ -44,7 +44,9 @@ class PoliticsNavigation extends Component
 //            Cookie::queue(Cookie::make('update_time', LastUpdate::latest()->first()->created_at->toCookieString()));
 //            Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
 //        }
-        Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
+        if(count($url) == 4) {
+            Session::put('update_time', LastUpdate::latest()->first()->created_at->toCookieString());
+        }
 
         return view('livewire.politics-navigation', [
             'politicians' => $politicians,
