@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\PoliticianController;
 use App\Http\Controllers\Client\PostController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::resource('/politician', PoliticianController::class);
         Route::resource('/blog', BlogController::class);
+        Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
+
     });
 });
 Route::group(['prefix' => '/politici'], function () {
