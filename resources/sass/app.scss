@@ -165,3 +165,13 @@ blockquote:before {
 blockquote p {
     display: inline;
 }
+
+.text-a {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+.text-a:hover {
+    color: #0606a5;
+    text-decoration: none;
+}
