@@ -89,10 +89,10 @@
     <x-slot name="scripts">
         <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
         <script type="text/javascript">
-            CKEDITOR.replace('text', {
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
+            {{--CKEDITOR.replace('text', {--}}
+            {{--    filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",--}}
+            {{--    filebrowserUploadMethod: 'form'--}}
+            {{--});--}}
             $(document).ready(function () {
                 $('.ckeditor').ckeditor();
             });
