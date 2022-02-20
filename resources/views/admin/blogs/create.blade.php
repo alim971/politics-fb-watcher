@@ -75,7 +75,7 @@
 
                                 <div class="ml-12">
                                     <div class="mt-2 text-sm text-gray-500">
-                                        <textarea name="text" class="form-control" id="text" value="{{ old('text')}}">
+                                        <textarea name="text" class="form-control ckeditor" id="text" value="{{ old('text')}}">
                                         </textarea>
                                     </div>
                                 </div>
