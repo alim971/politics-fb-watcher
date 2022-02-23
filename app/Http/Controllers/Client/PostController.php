@@ -165,7 +165,10 @@ class PostController extends Controller
 
         $posts = $table->get()->sortByDesc('date');
 
-        $post = $posts->find($postId);
+        $post = $posts->findOrFail($postId);
+        if(!$post) {
+
+        }
         $first = Session::get('first');
         if($first == null) {
             $first = $posts->last()->id;
