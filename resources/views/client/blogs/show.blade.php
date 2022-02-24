@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="ml-12">
-                        <div class="mt-2 text- text-gray-500">
+                        <div class="mt-2 text- text-gray-500 blog">
                             {!! $blog->text !!}
                         </div>
                     </div>
