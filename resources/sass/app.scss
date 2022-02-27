@@ -184,3 +184,9 @@ blockquote p {
     color: #0606a5;
     text-decoration: none;
 }
+
+.blog ol {
+    margin: inherit;
+    padding: revert;
+    list-style: decimal;
+}

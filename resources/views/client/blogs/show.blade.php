@@ -6,6 +6,7 @@
             :text="strip_tags($blog->firstWords(15))"
             :img="$img ?? $blog->politician->image"
             :app="'Reakcie, ' . config('app.name', 'Laravel')"
+            :politician="$blog->politician"
         />
     </x-slot>
     <div class="py-12">

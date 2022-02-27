@@ -5,6 +5,7 @@
             :title="$politician->fullName() . ': ' . $title"
             :text="$text ? $text : $title"
             :img="$img ?? $politician->image"
+            :politician="$politician"
         />
     </x-slot>
     <div class="py-12">

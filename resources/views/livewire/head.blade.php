@@ -12,8 +12,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="description" content="Stránka s automatickým sledovaním facebook príspevkov mnohých politikov a reakciami na nich">
-    <meta name="keywords" content="Blaha, Ľuboš, Ľuboš Blaha, Kotleba, Fico, Róbert Fico, Chmelár, Eduard Chmelár, Facebook, Res Publica, Vec verejná, ">
+    <meta name="description" content="{{ $descriptionGoogle }}" />
+    <meta name="keywords" content="{{ $keywords }}" />
+{{--    <meta name="description" content="Stránka s automatickým sledovaním facebook príspevkov mnohých politikov a reakciami na nich">--}}
+{{--    <meta name="keywords" content="Blaha, Ľuboš, Ľuboš Blaha, Kotleba, Fico, Róbert Fico, Chmelár, Eduard Chmelár, Facebook, Res Publica, Vec verejná ">--}}
     <title>{{ $app ?? config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->

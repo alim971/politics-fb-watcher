@@ -1,5 +1,8 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
+    @php
+        $new = \App\Models\Blog::where('updated_at', '>=', \Illuminate\Support\Carbon::parse(\Illuminate\Support\Facades\Session::get('update_time_blog', \Illuminate\Support\Carbon::now()->toCookieString())))->count()
+    @endphp
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -17,6 +20,11 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">
                         {{ __('Reakcie') }}
+                        @if($new >= 0)
+                        <div class="notification shadow">
+                            <div class="notification-text">{{ $new }}</div>
+                        </div>
+                        @endif
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -154,6 +162,11 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">
                 {{ __('Reakcie') }}
+                @if($new >= 0)
+                    <div class="notification-drop shadow">
+                        <div class="notification-text">{{ $new }}</div>
+                    </div>
+                @endif
             </x-jet-responsive-nav-link>
         </div>
 
