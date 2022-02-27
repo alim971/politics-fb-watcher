@@ -29,7 +29,7 @@ class Head extends Component
             $this->descriptionGoogle = "Facebook príspevok od politika " . $this->politician->fullName() . ": " . $this->description;
             $this->type = "article";
             $this->keywords = $this->politician->fullName() . ',' . $this->politician->name . ',' . $this->politician->surname . ',' . $this->politician->nick . ', príspevok, Facebook, novinka, aktualita, Res Publica, Vec verejná, politika, Slovensko, SR';
-            if(Str::contains($this->url, 'reakcia')) {
+            if(Str::contains($this->url, 'reakcie')) {
                 $this->descriptionGoogle = 'Reakcia na ' . $this->descriptionGoogle;
                 $this->keywords .= 'blog, reakcia,';
             }
@@ -39,7 +39,7 @@ class Head extends Component
             $this->descriptionGoogle = $this->description = 'Facebook príspevky od:' .$this->politician->fullName();
             $this->img = $this->politician->image;
             $this->keywords = $this->politician->fullName() . ',' . $this->politician->name . ',' . $this->politician->surname . ',' . $this->politician->nick . ', Res Publica, Vec verejná, politika, Slovensko, SR, aktualne, novinky, príspevky, Facebook,';
-            if(Str::contains($this->url, 'reakcia')) {
+            if(Str::contains($this->url, 'reakcie')) {
                 $this->descriptionGoogle = 'Nové reakcie na ' . $this->descriptionGoogle;
                 $this->description = 'Nové reakcie na ' . $this->description;
                 $this->keywords .= 'blog, reakcia,';
