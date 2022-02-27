@@ -20,7 +20,7 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">
                         {{ __('Reakcie') }}
-                        @if($new >= 0)
+                        @if($new > 0)
                         <div class="notification shadow">
                             <div class="notification-text">{{ $new }}</div>
                         </div>
@@ -162,7 +162,7 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('blogAll') }}" :active="request()->fullUrlIs(route('blogAll') . '*')">
                 {{ __('Reakcie') }}
-                @if($new >= 0)
+                @if($new > 0)
                     <div class="notification-drop shadow">
                         <div class="notification-text">{{ $new }}</div>
                     </div>
