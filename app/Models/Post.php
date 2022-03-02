@@ -38,7 +38,7 @@ class Post extends Model
     }
 
     public function firstWords($numberOfWords = 5, $ending = '...') {
-        return Str::words($this->text, $numberOfWords, $ending);
+        return Str::limit(Str::words($this->text, $numberOfWords, $ending), 150, $end='...');
     }
 
     public function politician() {
