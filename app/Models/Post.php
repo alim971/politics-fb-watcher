@@ -38,7 +38,10 @@ class Post extends Model
     }
 
     public function firstWords($numberOfWords = 5, $ending = '...') {
-        return Str::limit($this->text, 150, $end='...');
+        if(strlen($this->text) > 150) {
+            return Str::limit(Str::words(strip_tags($this->text), $numberOfWords, $ending), 150, $end = '...');
+        }
+        return Str::words($this->text, $numberOfWords, $ending);
     }
 
     public function politician() {
