@@ -55,7 +55,7 @@
                                                 <a href="{{ route('showTweet', ['twitter' => $tweet->twitter(), 'tweet' => $tweet]) }}">
                                                     <div class="ml-4" >
                                                         <div class="text-sm text-gray-900 ">
-                                                            {{ $tweet->firstWords(15)  }}
+                                                            {!! $tweet->firstWords(15) !!}
                                                         </div>
                                                     </div>
                                                 </a>
