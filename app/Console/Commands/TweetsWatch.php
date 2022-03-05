@@ -50,7 +50,7 @@ class TweetsWatch extends Command
      */
     public function handle()
     {
-        Log::info("Cron is working fine!");
+//        Log::info("Cron is working fine!");
         $this->getTweets();
         return 0;
     }
