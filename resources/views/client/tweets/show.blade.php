@@ -56,12 +56,12 @@
                         <div class="text-center align-middle">
                             {!! $toShow !!}
                         </div>
-                        <div id="showBlocked" class="hidden">
-                            <br/>
-                            Na zobrazenie Facebook komentárov je nutné byť prihlásený na Facebooku v browseri.<br />
-                            Ak chcete zanechať odkaz, ktorý sa dá zdieľať, prosím, prihláste sa na Facebook. <br />
-                            Ďakujem.
-                        </div>
+{{--                        <div id="showBlocked" class="hidden">--}}
+{{--                            <br/>--}}
+{{--                            Na zobrazenie Facebook komentárov je nutné byť prihlásený na Facebooku v browseri.<br />--}}
+{{--                            Ak chcete zanechať odkaz, ktorý sa dá zdieľať, prosím, prihláste sa na Facebook. <br />--}}
+{{--                            Ďakujem.--}}
+{{--                        </div>--}}
                     </div>
                 </div>
                 <div class="fb-comments" data-href="{{ $url }}" target="_top" data-width="100%" data-numtweets="5"></div>
