@@ -84,7 +84,7 @@ class TweetsWatch extends Command
                 if(isset($el['entities'])) {
                     foreach ($el['entities'] as $key => $entity) {
                         if ($key == 'urls') {
-                            $text = str_replace($entity[0]['url'], '<a href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
+                            $text = str_replace($entity[0]['url'], '<a class="text-a" href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
                         }
                     }
                 }
