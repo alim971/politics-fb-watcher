@@ -74,8 +74,8 @@ class TweetController extends Controller
             }
             $last = $tweet->id;
         }
-        $first = $tweets->first()->id  == $postId;
-        $last = $tweets->last()->id == $postId;
+        $first = $tweets->first()->id  == $tmpId;
+        $last = $tweets->last()->id == $tmpId;
 
         $next = $tweets->find($tmpId);
         if(!$next) {
