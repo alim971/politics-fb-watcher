@@ -1,6 +1,9 @@
 @if ($paginator->hasPages())
+    @php
+        $date = Str::contains(url()->full(), 'live') ? \App\Models\LastTweet::latest()->first()->created_at : \App\Models\LastUpdate::latest()->first()->created_at;
+    @endphp
     <nav role="navigation" aria-label="{{ __('Pagination Navigation') }}" class="flex items-center justify-between px-6 py-4">
-        {{\Illuminate\Support\Str::contains(url()->full(), 'live') ? 'aa' : 'ee'}}
+
         <div class="flex justify-between flex-1 sm:hidden">
             @if ($paginator->onFirstPage())
                 <span class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
@@ -11,9 +14,7 @@
                     {!! '&laquo; Predchádzajúca' !!}
                 </a>
             @endif
-                @php
-                    $date = Str::contains(url()->full(), 'live') ? \App\Models\LastTweet::latest()->first()->created_at : \App\Models\LastUpdate::latest()->first()->created_at;
-                @endphp
+
                 <p class="text-sm text-gray-700 leading-5" title="{{ $date->isoFormat('LLLL') }}">
                     Naposledy kontrolované {{ $date->diffForHumans() }}.
                 </p>
@@ -109,9 +110,6 @@
             </div>
 
             <div>
-                @php
-                    $date = \App\Models\LastUpdate::latest()->first()->created_at;
-                @endphp
                 <p class="text-sm text-gray-700 leading-5" title="{{ $date->isoFormat('LLLL') }}">
                     Naposledy kontrolované {{ $date->diffForHumans() }}.
                 </p>
