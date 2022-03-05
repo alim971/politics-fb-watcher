@@ -91,14 +91,14 @@ class TweetController extends Controller
         $table = new Tweet;
         $table->setTable($twitter->db);
 
-        $tweets = $table->get();
+        $tweets = $table->get()->sortByDesc('posted');
 
         $tweet = $tweets->find($tweetId);
         if(!$tweet) {
             abort(404);
         }
-        $first = Session::get('first');
-        if($first == null) {
+        $first = Session::get('first', 'no');
+        if($first == 'no') {
             $first = $tweets->first()->id  == $tweetId;
             $last = $tweets->last()->id == $tweetId;
         } else {
