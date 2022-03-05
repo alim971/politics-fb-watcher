@@ -35,13 +35,13 @@
                             </div>
                         </div>
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                            @if($id > $first)
+                            @if(!$first)
                                 <span class="text-sm text-gray-400">Predchádzajúci tweet</span>
-                                <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id - 1, 'plus' => '0']) }}" class="btn btn-primary"><i
+                                <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id, 'plus' => '0']) }}" class="btn btn-primary"><i
                                         class="fa fa-arrow-left"></i></a>
                             @endif
-                            @if($id < $last)
-                            <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id + 1, 'plus' => '1']) }}" class="btn btn-primary"><i
+                            @if(!$last)
+                            <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id, 'plus' => '1']) }}" class="btn btn-primary"><i
                                     class="fa fa-arrow-right"></i></a>
                             <span class="text-sm text-gray-400">Ďalší tweet</span>
                             @endif

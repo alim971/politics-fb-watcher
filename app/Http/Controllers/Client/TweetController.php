@@ -48,30 +48,39 @@ class TweetController extends Controller
     public function showOneFrom(Twitter $twitter, $postId, $plus = "true")
     {
         $postId = (int) $postId;
+        $tmpId = $postId;
 
         $table = new Tweet;
         $table->setTable($twitter->db);
-        $tweets = $table->get();
+        $tweets = $table->get()->sortByDesc('posted');
 
-        $first = $tweets->first()->id;
-        $last = $tweets->last()->id;
-        $tmpId = $postId;
-        if($plus) {
-            while(!$tweets->contains('id', $tmpId)) {
-                if($tmpId >= $last) {
-                    abort(404);
-                }
-                $tmpId++;
+        $last = -1;
+        $shouldNext = false;
+
+        foreach($tweets as $tweet) {
+
+            if($shouldNext) {
+                $tmpId = $tweet->id;
+                break;
             }
-        } else {
-            while(!$tweets->contains('id', $tmpId)) {
-                if($tmpId <= $first) {
-                    abort(404);
+            $shouldNext = false;
+            if($tweet->id == $postId) {
+                if($plus) {
+                    $tmpId = $last;
+                    break;
+                } else {
+                    $shouldNext = true;
                 }
-                $tmpId--;
             }
+            $last = $tweet->id;
         }
+        $first = $tweets->first()->id  == $postId;
+        $last = $tweets->last()->id == $postId;
+
         $next = $tweets->find($tmpId);
+        if(!$next) {
+            abort(404);
+        }
         return redirect()
             ->route('showTweet', ['twitter' => $twitter, 'tweet' => $next->id])
             ->with(['first' => $first, 'last' => $last]);
@@ -90,8 +99,8 @@ class TweetController extends Controller
         }
         $first = Session::get('first');
         if($first == null) {
-            $first = $tweets->first()->id;
-            $last = $tweets->last()->id;
+            $first = $tweets->first()->id  == $tweetId;
+            $last = $tweets->last()->id == $tweetId;
         } else {
             $last = Session::get('last');
         }
