@@ -11,7 +11,7 @@
                 </a>
             @endif
                 @php
-                    $date = \App\Models\LastUpdate::latest()->first()->created_at;
+                    $date = Str::contains(url()->full(), 'live') ? \App\Models\LastTweet::latest()->first()->created_at : \App\Models\LastUpdate::latest()->first()->created_at;
                 @endphp
                 <p class="text-sm text-gray-700 leading-5" title="{{ $date->isoFormat('LLLL') }}">
                     Naposledy kontrolované {{ $date->diffForHumans() }}.

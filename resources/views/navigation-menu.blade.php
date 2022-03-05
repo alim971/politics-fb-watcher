@@ -26,7 +26,7 @@
                         </div>
                         @endif
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('indexAllTwitter') }}" :active="request()->fullUrlIs(route('indexAll') . '*')">
+                    <x-jet-nav-link href="{{ route('indexAllTwitter') }}" :active="request()->fullUrlIs(route('indexAllTwitter') . '*')">
                         {{ __('Ukrajina Live') }}
                     </x-jet-nav-link>
                 </div>
@@ -171,7 +171,7 @@
                     </div>
                 @endif
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('indexAllTwitter') }}" :active="request()->fullUrlIs(route('indexAll') . '*')">
+            <x-jet-responsive-nav-link href="{{ route('indexAllTwitter') }}" :active="request()->fullUrlIs(route('indexAllTwitter') . '*')">
                 {{ __('Ukrajina Live') }}
             </x-jet-responsive-nav-link>
         </div>
