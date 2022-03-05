@@ -1,5 +1,5 @@
 <x-app-layout>
-    <livewire:live-navigation />
+    <livewire:politics-navigation />
     <x-slot name="head">
         <livewire:head
         />
