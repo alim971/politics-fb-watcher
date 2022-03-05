@@ -5,7 +5,7 @@
             :title="$twitter->name . ': ' . $title"
             :text="$text ? $text : $title"
             :twitter="$twitter"
-            :img="$img ?? $politician->image"
+            :img="$img ?? $twitter->image"
         />
     </x-slot>
     <div class="py-12">
