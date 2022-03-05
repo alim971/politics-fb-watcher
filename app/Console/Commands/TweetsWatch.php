@@ -16,7 +16,7 @@ class TweetsWatch extends Command
 
     private $embeddedUrl = "https://publish.twitter.com/oembed?url=";
     private $apiBase = "https://api.twitter.com/2/users/";
-    private $query = "/tweets?tweet.fields=created_at,text,entities";
+    private $query = "/tweets?exclude=replies&tweet.fields=created_at,text,entities";
     private $token = "AAAAAAAAAAAAAAAAAAAAAJJqZwEAAAAAOPkbxfJ0i%2B3KdZTIDu4sczx8zyo%3DKwbetboxznrLBpPaHuTRAA8dhpp7tf1P8gq3DVXvqPLWN992ht";
 
     /**
