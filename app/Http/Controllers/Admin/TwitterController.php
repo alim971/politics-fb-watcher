@@ -43,6 +43,7 @@ class TwitterController extends Controller
         $twitter->db = $request->input('db');
         $twitter->url = $request->input('url');
         $twitter->nick = $request->input('nick');
+        $twitter->image = $request->input('img');
         $twitter->save();
         Artisan::call('tweets:watch');
         return redirect()->route('twitter.index');
@@ -74,6 +75,8 @@ class TwitterController extends Controller
         $twitter->db = $request->input('db');
         $twitter->url = $request->input('url');
         $twitter->nick = $request->input('nick');
+        $twitter->image = $request->input('img');
+
         $twitter->save();
 
         return redirect()->route('twitter.index');

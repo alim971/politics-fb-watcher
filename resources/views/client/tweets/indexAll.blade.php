@@ -33,6 +33,9 @@
                                         <td class="px-6 py-4">
                                             <div class="flex items-center">
                                                 <a href="{{ route('indexOneTwitter', ['twitter' => $tweet->twitter()]) }}">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <img class="h-10 w-10 hover:zoom-12-origin rounded-full shadow" src="{{ $tweet->twitter()->image }}" alt="{{ $tweet->twitter()->fullName() }}">
+                                                    </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900 hover:zoom-12">
                                                             {{ $tweet->twitter()->name }}
@@ -45,7 +48,6 @@
                                                         </div>
                                                     </div>
                                                 </a>
-
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 ">

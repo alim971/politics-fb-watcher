@@ -13,9 +13,21 @@
                 <div class="p-2 sm:px-20 bg-white border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
+                            <svg aria-label="{{$twitter->fullName()}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
+                                <mask id="jsc_c_2">
+                                    <circle cx="84" cy="84" fill="white" r="84"></circle>
+                                </mask>
+                                <g mask="url(#jsc_c_2)">
+                                    <image x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                                           xlink:href="{{$twitter->image}}" style="height: 168px; width: 168px;"
+                                           alt="{{$twitter->fullName()}}">
+                                    </image>
+                                </g>
+                            </svg>
+                            {{--                            <img src="" />--}}
                             <div class="ml-4 text-2xl text-gray-600 leading-7 font-semibold">
                                 <div>
-                                    {{$twitter->name}}
+                                    {{$twitter->fullName()}}
                                 </div>
                                 <div title="{{ $date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     {{ $date->isoFormat('LLLL') }}

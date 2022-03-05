@@ -27,6 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>Image</th>
                                     <th>Nick</th>
                                     <th>Url</th>
                                     <th>Db</th>
@@ -37,6 +38,18 @@
                                 @forelse($twitters as $twitter)
                                     <tr>
                                         <td>{{ $twitter->fullName() }}</td>
+                                        <td><svg aria-label="{{$twitter->name}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
+                                                <mask id="jsc_c_2">
+                                                    <circle cx="84" cy="84" fill="white" r="84"></circle>
+                                                </mask>
+                                                <g mask="url(#jsc_c_2)">
+                                                    <image x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                                                           xlink:href="{{$twitter->image}}" style="height: 168px; width: 168px;"
+                                                           alt="{{$twitter->name}}">
+                                                    </image>
+                                                </g>
+                                            </svg></td>
+                                        <td>
                                         <td>{{ $twitter->nick }}</td>
                                         <td>{{ $twitter->url }}</td>
                                         <td>{{ $twitter->db }}</td>

@@ -34,6 +34,11 @@
                                     <input type="text" name="name" class="form-control" id="name" value="{{ old('name')}}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="img"
+                                           class="control-label">Img</label>
+                                    <input type="text" name="img" class="form-control" id="img" value="{{ old('img')}}">
+                                </div>
+                                <div class="form-group">
                                     <label for="url"
                                            class="control-label">Url</label>
                                     <input type="text" name="url" class="form-control" id="url" value="{{ old('url')}}">

@@ -10,7 +10,17 @@
             <div class="p-6">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center" style="overflow-wrap: anywhere">
-                        {{--                            <img src="" />--}}
+                        <svg aria-label="{{$twitter->fullName()}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
+                            <mask id="jsc_c_2">
+                                <circle cx="84" cy="84" fill="white" r="84"></circle>
+                            </mask>
+                            <g mask="url(#jsc_c_2)">
+                                <image x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                                       xlink:href="{{$twitter->image}}" style="height: 168px; width: 168px;"
+                                       alt="{{$twitter->fullName()}}">
+                                </image>
+                            </g>
+                        </svg>
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
                             <div>
                                 {{ $twitter->name }}
