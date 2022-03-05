@@ -17,7 +17,7 @@ class HeadLive extends Component
     public $img = null;
     public $twitter;
     public $text;
-    public $app = null;
+    public $app = "Ukrajina Live";
     public $cke = null;
 
     public function render()
@@ -29,6 +29,7 @@ class HeadLive extends Component
             $this->descriptionGoogle = "Tweet od " . $this->twitter->name . ": " . $this->description;
             $this->type = "article";
             $this->keywords = $this->twitter->name . ', tweet, twitter, novinka, aktualita, ukrajina, UA, UK, Res Publica, Vec verejná, politika, Slovensko, SR';
+
 
         } else if($this->twitter != null){
             $this->img = $this->twitter->image;
