@@ -31,6 +31,7 @@ class HeadLive extends Component
             $this->keywords = $this->twitter->name . ', tweet, twitter, novinka, aktualita, ukrajina, UA, UK, Res Publica, Vec verejná, politika, Slovensko, SR';
 
         } else if($this->twitter != null){
+            $this->img = $this->twitter->image;
             $this->title = 'Tweety od: ' . $this->twitter->name;
             $this->descriptionGoogle = $this->description = 'Tweety od:' . $this->twitter->name;
             $this->keywords = $this->twitter->name . ', tweet, twitter, novinka, aktualita, ukrajina, UA, UK, Res Publica, Vec verejná, politika, Slovensko, SR';
