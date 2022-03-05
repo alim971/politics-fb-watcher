@@ -3,7 +3,7 @@
         <livewire:head
         />
     </x-slot>
-    <form action="{{ route('politician.store') }}" method="post">
+    <form action="{{ route('twitter.store') }}" method="post">
         @csrf
         <x-slot name="header">
             <h2 class="pull-left font-semibold text-xl text-gray-800 leading-tight">
@@ -34,24 +34,19 @@
                                     <input type="text" name="name" class="form-control" id="name" value="{{ old('name')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="surname"
-                                           class="control-label">Surname</label>
-                                    <input type="text" name="surname" class="form-control" id="surname" value="{{ old('surname')}}">
+                                    <label for="url"
+                                           class="control-label">Url</label>
+                                    <input type="text" name="url" class="form-control" id="url" value="{{ old('url')}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="nick"
-                                           class="control-label">Nick</label>
+                                           class="control-label">ID</label>
                                     <input type="text" name="nick" class="form-control" id="nick" value="{{ old('nick')}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="username"
-                                           class="control-label">Name</label>
-                                    <input type="text" name="username" class="form-control" id="username" value="{{ old('username')}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="image"
-                                           class="control-label">Image source</label>
-                                    <input type="text" name="image" class="form-control" id="image" value="{{ old('image')}}">
+                                    <label for="db"
+                                           class="control-label">Db</label>
+                                    <input type="text" name="db" class="form-control" id="db" value="{{ old('db')}}">
                                 </div>
                             </div>
                         </div>

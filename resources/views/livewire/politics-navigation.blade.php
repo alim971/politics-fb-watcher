@@ -54,7 +54,7 @@
                             {{--                            </div>--}}
                             @foreach($politicians as $politician)
                                 @if ($loop->index >= 3)
-                                    <x-jet-dropdown-link href="{{ route('indexOne', $politician) }}">
+                                    <x-jet-dropdown-link href="{{ route($route, $politician) }}">
                                         {{ $politician->fullName() }}
                                         @if($politician->new)
                                             <div class="notification-drop shadow">
@@ -66,8 +66,8 @@
                             @endforeach
                         </x-slot>
                     </x-jet-dropdown>
-                    @endif
                 </div>
+            @endif
         </div>
     </div>
 </x-slot>

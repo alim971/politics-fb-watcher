@@ -3,7 +3,7 @@
         <livewire:head
         />
     </x-slot>
-    <form action="{{ route('politician.update', ['politician' => $politician]) }}" method="post">
+    <form action="{{ route('twitter.update', ['twitter' => $twitter]) }}" method="post">
         @csrf
         @method('PUT')
         <x-slot name="header">
@@ -22,36 +22,27 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
 
-                        <div class="mt-8 text-2xl">
-                            Welcome to your Jetstream application!
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"><i class="fa fa-floppy-o"></i></button>
-                        </div>
                         <div class="mt-6 text-gray-500">
                             <div class="x_content">
                                 <div class="form-group">
                                     <label for="name"
                                            class="control-label">Name</label>
-                                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $politician->name)}}">
+                                    <input type="text" name="name" class="form-control" id="name" value="{{ old('name', $twitter->name)}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="surname"
-                                           class="control-label">Surname</label>
-                                    <input type="text" name="surname" class="form-control" id="surname" value="{{ old('surname', $politician->surname)}}">
+                                    <label for="url"
+                                           class="control-label">Url</label>
+                                    <input type="text" name="url" class="form-control" id="urk" value="{{ old('url', $twitter->url)}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="nick"
-                                           class="control-label">Nick</label>
-                                    <input type="text" name="nick" class="form-control" id="nick" value="{{ old('nick', $politician->nick)}}">
+                                           class="control-label">ID</label>
+                                    <input type="text" name="nick" class="form-control" id="nick" value="{{ old('nick', $twitter->nick)}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="username"
-                                           class="control-label">UserName</label>
-                                    <input type="text" name="username" class="form-control" id="username" value="{{ old('username', $politician->username)}}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="image"
-                                           class="control-label">Image source</label>
-                                    <input type="text" name="image" class="form-control" id="image" value="{{ old('image', $politician->image)}}">
+                                    <label for="db"
+                                           class="control-label">Db</label>
+                                    <input type="text" name="db" class="form-control" id="db" value="{{ old('db', $twitter->db)}}">
                                 </div>
                             </div>
                         </div>

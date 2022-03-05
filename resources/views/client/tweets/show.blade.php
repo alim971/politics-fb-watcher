@@ -1,11 +1,10 @@
 <x-app-layout>
-    <livewire:politics-navigation />
+    <livewire:live-navigation />
     <x-slot name="head">
-        <livewire:head
-            :title="$politician->fullName() . ': ' . $title"
+        <livewire:head-live
+            :title="$twitter->name . ': ' . $title"
             :text="$text ? $text : $title"
-            :img="$img ?? $politician->image"
-            :politician="$politician"
+            :twitter="$twitter"
         />
     </x-slot>
     <div class="py-12">
@@ -14,51 +13,25 @@
                 <div class="p-2 sm:px-20 bg-white border-b border-gray-200">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <svg aria-label="{{$politician->fullName()}}" class="pzggbiyp" data-visualcompletion="ignore-dynamic" role="img" style="height: 168px; width: 168px;">
-                                <mask id="jsc_c_2">
-                                    <circle cx="84" cy="84" fill="white" r="84"></circle>
-                                </mask>
-                                <g mask="url(#jsc_c_2)">
-                                    <image x="0" y="0" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
-                                        xlink:href="{{$politician->image}}" style="height: 168px; width: 168px;"
-                                        alt="{{$politician->fullName()}}">
-                                    </image>
-                                </g>
-                            </svg>
-{{--                            <img src="" />--}}
                             <div class="ml-4 text-2xl text-gray-600 leading-7 font-semibold">
                                 <div>
-                                    {{$politician->fullName()}}
+                                    {{$twitter->name}}
                                 </div>
                                 <div title="{{ $date->isoFormat('LLLL') }}" class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     {{ $date->isoFormat('LLLL') }}
                                 </div>
-                                @if($reaction)
-                                <div class="mt-2">
-                                    <div class="px-2 leading-5 text-sm font-semibold inline-flex rounded-full bg-red-100 mt-2">
-                                        Reakcia:
-                                    </div>
-
-                                    <a href="{{ route('showBlog', ['blog' => $reaction]) }}">
-                                        <div class="text-gray-900 hover:zoom-11 inline-flex" style="font-size: 1rem">
-                                            {!! $reaction->title  !!}
-                                            <i class="fa fa-external-link"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                @endif
                             </div>
                         </div>
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
                             @if($id > $first)
-                                <span class="text-sm text-gray-400">Predchádzajúci príspevok</span>
-                                <a href="{{ route('oneHelper', ['politician' => $politician, 'post' => $id - 1, 'plus' => '0']) }}" class="btn btn-primary"><i
+                                <span class="text-sm text-gray-400">Predchádzajúci tweet</span>
+                                <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id - 1, 'plus' => '0']) }}" class="btn btn-primary"><i
                                         class="fa fa-arrow-left"></i></a>
                             @endif
                             @if($id < $last)
-                            <a href="{{ route('oneHelper', ['politician' => $politician, 'post' => $id + 1, 'plus' => '1']) }}" class="btn btn-primary"><i
+                            <a href="{{ route('oneHelperTwitter', ['twitter' => $twitter, 'tweet' => $id + 1, 'plus' => '1']) }}" class="btn btn-primary"><i
                                     class="fa fa-arrow-right"></i></a>
-                            <span class="text-sm text-gray-400">Ďalší príspevok</span>
+                            <span class="text-sm text-gray-400">Ďalší tweet</span>
                             @endif
                         </div>
                     </div>
@@ -80,17 +53,9 @@
                                 {!! $text !!}
                             </div>
                         </div>
-                        @if($photo != null)
-                            <div class="flex py-6">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div style="width: 100%; text-align: -webkit-center"><img alt="Photo from Fb post" src="data:image/png;base64,{{ base64_encode($photo) }}"></div>
-                            </div>
-                        @elseif($img != null)
-                        <div class="flex py-6">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <div style="width: 100%; text-align: -webkit-center"><img alt="Photo from Fb post" src="{{ $img }}"></div>
+                        <div class="text-center align-middle">
+                            {!! $toShow !!}
                         </div>
-                        @endif
                         <div id="showBlocked" class="hidden">
                             <br/>
                             Na zobrazenie Facebook komentárov je nutné byť prihlásený na Facebooku v browseri.<br />
@@ -99,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fb-comments" data-href="{{ $url }}" target="_top" data-width="100%" data-numposts="5"></div>
+                <div class="fb-comments" data-href="{{ $url }}" target="_top" data-width="100%" data-numtweets="5"></div>
             </div>
         </div>
     </div>
