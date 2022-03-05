@@ -61,11 +61,11 @@
                             <div class="ml-4 text-gray-600 leading-7 font-semibold"> {!! $title !!} </div>
                         </div>
 
-                        <div class="ml-12">
-                            <div class="mt-2 text- text-gray-500">
-                                {!! $text !!}
-                            </div>
-                        </div>
+{{--                        <div class="ml-12">--}}
+{{--                            <div class="mt-2 text- text-gray-500">--}}
+{{--                                {!! $text !!}--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                         <div class="text-center align-middle">
                             {!! $toShow !!}
                         </div>
