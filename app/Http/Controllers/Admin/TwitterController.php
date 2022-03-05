@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Twitter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class TwitterController extends Controller
 {
@@ -43,7 +44,7 @@ class TwitterController extends Controller
         $twitter->url = $request->input('url');
         $twitter->nick = $request->input('nick');
         $twitter->save();
-
+        Artisan::call('tweets:watch');
         return redirect()->route('twitter.index');
     }
 
