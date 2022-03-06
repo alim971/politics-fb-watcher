@@ -8,6 +8,7 @@ class NewPostNotification extends Component
 {
     public $isNew;
     public $route;
+    public $del;
 
     public function render()
     {

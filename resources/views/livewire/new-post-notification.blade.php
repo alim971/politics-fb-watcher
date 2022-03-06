@@ -1,4 +1,13 @@
 <div class="flex items-center">
+    @if(isset($del))
+    @auth
+        <form action="{{ $del }}" class="inline" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger deleteConfirm" type="submit"><i class="fa fa-trash"></i></button>
+        </form>
+    @endauth
+    @endif
     <a href="{{ $route }}" class="text-indigo-600 hover:text-indigo-900">
         <div>
             Zobraziť

@@ -113,16 +113,10 @@
                                     </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        @auth
-                                            <form action="{{ route('postDelete', ['politician' => $post->politician(), 'post' => $post]) }}" class="inline" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-danger deleteConfirm" type="submit"><i class="fa fa-trash"></i></button>
-                                            </form>
-                                        @endauth
                                         <livewire:new-post-notification
                                             :isNew="$loop->index < $politician->newPosts"
                                             :route="route('showPost', ['politician' => $post->politician(), 'post' => $post])"
+                                            :del="route('postDelete', ['politician' => $post->politician(), 'post' => $post])"
                                         />
                                     </td>
                                 </tr>
