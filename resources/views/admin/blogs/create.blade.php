@@ -43,7 +43,7 @@
                                         </div>
                                     </div>
                                     <div class="ml-12">
-                                        <textarea name="title" class="ckeditor form-control" id="title">
+                                        <textarea name="title" class="summernote form-control" id="title">
                                             {{ old('title')}}
                                         </textarea>
                                     </div>
@@ -75,7 +75,7 @@
 
                                 <div class="ml-12">
                                     <div class="mt-2 text-sm text-gray-500">
-                                        <textarea name="text" class="form-control" id="text" value="{{ old('text')}}">
+                                        <textarea name="text" class="form-control summernote" data-langID="sk" id="text" value="{{ old('text')}}">
                                         </textarea>
                                     </div>
                                 </div>
@@ -86,18 +86,18 @@
             </div>
         </div>
     </form>
-    <x-slot name="scripts">
-        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-        <script type="text/javascript">
-            CKEDITOR.replace('text', {
-                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-            $(document).ready(function () {
-                $('.ckeditor').ckeditor();
-            });
-        </script>
-    </x-slot>
+{{--    <x-slot name="scripts">--}}
+{{--        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>--}}
+{{--        <script type="text/javascript">--}}
+{{--            CKEDITOR.replace('text', {--}}
+{{--                filebrowserUploadUrl: "{{route('ckeditor.image-upload', ['_token' => csrf_token() ])}}",--}}
+{{--                filebrowserUploadMethod: 'form'--}}
+{{--            });--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('.ckeditor').ckeditor();--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    </x-slot>--}}
 </x-app-layout>
 
 

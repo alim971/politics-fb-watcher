@@ -24,7 +24,46 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @if($cke)
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <!-- include summernote css/js -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+        <x-slot name="scripts">
+            <script type="text/javascript">
+
+                var imageUploadUrlSum = "{{ route('image.save') }}";
+
+                $('.summernote').summernote({
+                    height: 400,
+                    lang: 'sk-SK'
+                });
+
+                // Initialize summernote plugin
+                $('.summernote').on('summernote.change', function (we, contents, $editable) {
+                    $(".input-info[data-langID='" + $(we.target).attr('data-langID') + "']").val(contents);
+                });
+
+                $('.summernote').summernote({
+                    callbacks: {
+                        onPaste: function (e) {
+                            var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                            e.preventDefault();
+                            document.execCommand('insertText', false, bufferText);
+                        }
+                    }
+                });
+
+{{--                @foreach(\App\Models\Language\Language::all() as $lang)--}}
+{{--                if ($(".input-info[data-langID='{{$lang->id}}']").val() != '') {--}}
+{{--                    $(".summernote[data-langID='{{$lang->id}}']").summernote('code', $(".input-info[data-langID='{{$lang->id}}']").val());--}}
+{{--                }--}}
+{{--                @endforeach--}}
+            </script>
+        </x-slot>
+
     @endif
 {{--    @if($editor)--}}
 {{--        <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>--}}

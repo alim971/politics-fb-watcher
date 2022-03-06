@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CKEditorController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\PoliticianController;
 use App\Http\Controllers\Admin\PostController as AdminPost;
 use App\Http\Controllers\Admin\TwitterController;
@@ -31,6 +32,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],function () {
         Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
         Route::resource('/twitter', TwitterController::class);
         Route::delete('/{politician}/{post}', [AdminPost::class, 'destroy'])->name('postDelete');
+        Route::group(['prefix' => 'summernote'], function () {
+            Route::get('/getImage/{name}', [ImageController::class, 'getImage'])->name('image.get');
+            Route::post('/saveImage', [ImageController::class, 'saveImage'])->name('image.save');
+        });
 
     });
 });
