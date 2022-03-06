@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\PoliticianController;
-use App\Http\Controllers\Admin\PostController as AdminPost;
+//use App\Http\Controllers\Admin\PostController as AdminPost;
 use App\Http\Controllers\Admin\TwitterController;
 use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Client\TweetController;
