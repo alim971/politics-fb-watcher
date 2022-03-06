@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CKEditorController;
 use App\Http\Controllers\Admin\PoliticianController;
+use App\Http\Controllers\Admin\PostController as AdminPost;
 use App\Http\Controllers\Admin\TwitterController;
 use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Client\TweetController;
@@ -29,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],function () {
         Route::resource('/blog', BlogController::class);
         Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
         Route::resource('/twitter', TwitterController::class);
-        Route::delete('/{politician}/{post}', \App\Http\Controllers\Admin\PostController::class)->name('postDelete');
+        Route::delete('/{politician}/{post}', AdminPost::class)->name('postDelete');
 
     });
 });
