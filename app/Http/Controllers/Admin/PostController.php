@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Politician;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -79,8 +80,12 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Politician  $politician, $postId)
     {
-        $post->delete();
+        $table = new Post;
+        $table->setTable($politician->nick());
+
+        $table->find($postId)->delete();
+        return redirect()->back();
     }
 }
