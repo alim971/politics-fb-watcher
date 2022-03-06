@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']],function () {
         Route::resource('/blog', BlogController::class);
         Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
         Route::resource('/twitter', TwitterController::class);
-        Route::delete('/{politician}/{post}', AdminPost::class)->name('postDelete');
+//        Route::delete('/{politician}/{post}', AdminPost::class)->name('postDelete');
 
     });
 });
