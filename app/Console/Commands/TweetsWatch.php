@@ -92,7 +92,7 @@ class TweetsWatch extends Command
 
 
                 $tweet->text = $text;
-                $tweet->html = $this->getEmbedded($twitter->url . 'status/' . $tweet->status);
+                $tweet->html = $this->getEmbedded($twitter->url . '/status/' . $tweet->status);
                 if($update) {
                     $tweet->update();
                 } else {
@@ -104,7 +104,7 @@ class TweetsWatch extends Command
     }
 
     private function getEmbedded($url) {
-        $response = Http::get($this->embeddedUrl  . '/' . $url);
+        $response = Http::get($this->embeddedUrl . $url);
         $decoded = json_decode($response);
         return $decoded->html;
     }

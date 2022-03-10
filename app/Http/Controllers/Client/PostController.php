@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
@@ -40,6 +41,8 @@ class PostController extends Controller
      */
     public function showAll(Request $request)
     {
+        Artisan::call('tweets:watch');
+
         $lastUpdate = Carbon::parse(
 //            Cookie::get('update_time', LastUpdate::latest()->first()->created_at->toCookieString())
             Session::get('update_time', LastUpdate::latest()->first()->created_at->toCookieString())
