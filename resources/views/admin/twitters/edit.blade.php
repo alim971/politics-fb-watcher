@@ -36,7 +36,7 @@
                                 <div class="form-group">
                                     <label for="img"
                                            class="control-label">Img</label>
-                                    <input type="text" name="img" class="form-control" id="img" value="{{ old('img', $twitter->img)}}">
+                                    <input type="text" name="img" class="form-control" id="img" value="{{ old('img', $twitter->image)}}">
                                 </div>
                                 <div class="form-group">
                                     <label for="url"
