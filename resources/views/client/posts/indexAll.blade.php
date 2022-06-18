@@ -45,8 +45,8 @@
                                                             <i class="fa fa-external-link"></i>
                                                         </div>
                                                         <div class="text-sm text-gray-500">
-                                                            <a href="https://www.facebook.com/{{ $post->politician()->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
-                                                                https://www.facebook.com/{{ $post->politician()->nick }}
+                                                            <a href="{{($post->politician()->isVk ? "https://www.vk.com/" : "https://www.facebook.com/") . $post->politician()->nick }}" target="_blank" class="text-gray-500 hover:text-gray-900">
+                                                                {{ ($post->politician()->isVk ? "https://www.vk.com/" : "https://www.facebook.com/") . $post->politician()->nick }}
                                                             </a>
                                                         </div>
                                                     </div>
