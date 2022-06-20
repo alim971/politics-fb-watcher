@@ -32,7 +32,7 @@
                         </x-slot>
                         <x-slot name="content">
                             @foreach($politicians as $politician)
-                                @if ($loop->index >= 3)
+                                @if ($loop->index >= 10)
                                     <x-jet-dropdown-link href="{{ route($route, $politician) }}">
                                         {{ $politician->fullName() }}
                                         @if($politician->new)
