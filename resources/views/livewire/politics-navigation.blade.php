@@ -17,7 +17,7 @@
                 @endif
             @endforeach
             @if($politicians->count() > 3)
-                <div class="space-x-8 sm:-my-px py-2 sm:ml-6 sm:flex ml-3 relative">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-6 sm:flex ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
