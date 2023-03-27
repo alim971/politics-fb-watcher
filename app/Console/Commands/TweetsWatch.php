@@ -71,32 +71,36 @@ class TweetsWatch extends Command
             $decodedAsArray = json_decode($response, true);
             $innerPost = $decodedAsArray['data'];
             foreach($innerPost as $el) {
-                $tweet = new Tweet;
-                $tweet->setTable($twitter->db);
-                if($tweet->where('status', $el['id'])->first()) {
-                    $update = true;
-                } else {
-                    $update = false;
-                }
-                $tweet->posted = $el['created_at'];
-                $tweet->status = $el['id'];
-                $text = $el['text'];
-                if(isset($el['entities'])) {
-                    foreach ($el['entities'] as $key => $entity) {
-                        if ($key == 'urls') {
-                            $text = str_replace($entity[0]['url'], '<a class="text-a" href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
+                try {
+                    $tweet = new Tweet;
+                    $tweet->setTable($twitter->db);
+                    if($tweet->where('status', $el['id'])->first()) {
+                        $update = true;
+                    } else {
+                        $update = false;
+                    }
+                    $tweet->posted = $el['created_at'];
+                    $tweet->status = $el['id'];
+                    $text = $el['text'];
+                    if(isset($el['entities'])) {
+                        foreach ($el['entities'] as $key => $entity) {
+                            if ($key == 'urls') {
+                                $text = str_replace($entity[0]['url'], '<a class="text-a" href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
+                            }
                         }
                     }
-                }
-                $text = nl2br($text);
+                    $text = nl2br($text);
 
 
-                $tweet->text = $text;
-                $tweet->html = $this->getEmbedded($twitter->url . '/status/' . $tweet->status);
-                if($update) {
-                    $tweet->update();
-                } else {
-                    $tweet->save();
+                    $tweet->text = $text;
+                    $tweet->html = $this->getEmbedded($twitter->url . '/status/' . $tweet->status);
+                    if($update) {
+                        $tweet->update();
+                    } else {
+                        $tweet->save();
+                    }
+                } catch (Exception $e) {
+                    continue;
                 }
             }
 
