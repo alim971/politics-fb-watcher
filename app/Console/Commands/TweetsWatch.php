@@ -99,7 +99,7 @@ class TweetsWatch extends Command
                         } else {
                             $tweet->save();
                         }
-                    } catch (Exception $e){
+                    } catch (\PDOException $e){
                         continue;
                     }
             }
