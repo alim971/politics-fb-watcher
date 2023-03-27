@@ -70,40 +70,39 @@ class TweetsWatch extends Command
             ])->get($this->apiBase . $twitter->nick . $this->query);
             $decodedAsArray = json_decode($response, true);
             $innerPost = $decodedAsArray['data'];
-//             foreach($innerPost as $el) {
-//                 try {
-//                     $tweet = new Tweet;
-//                     $tweet->setTable($twitter->db);
-//                     if($tweet->where('status', $el['id'])->first()) {
-//                         $update = true;
-//                     } else {
-//                         $update = false;
-//                     }
-//                     $tweet->posted = $el['created_at'];
-//                     $tweet->status = $el['id'];
-//                     $text = $el['text'];
-//                     if(isset($el['entities'])) {
-//                         foreach ($el['entities'] as $key => $entity) {
-//                             if ($key == 'urls') {
-//                                 $text = str_replace($entity[0]['url'], '<a class="text-a" href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
-//                             }
-//                         }
-//                     }
-//                     $text = nl2br($text);
+            foreach($innerPost as $el) {
+                    $tweet = new Tweet;
+                    $tweet->setTable($twitter->db);
+                    if($tweet->where('status', $el['id'])->first()) {
+                        $update = true;
+                    } else {
+                        $update = false;
+                    }
+                    $tweet->posted = $el['created_at'];
+                    $tweet->status = $el['id'];
+                    $text = $el['text'];
+                    if(isset($el['entities'])) {
+                        foreach ($el['entities'] as $key => $entity) {
+                            if ($key == 'urls') {
+                                $text = str_replace($entity[0]['url'], '<a class="text-a" href="' . $entity[0]['expanded_url'] . '">' . $entity[0]['display_url'] . '</a>', $text);
+                            }
+                        }
+                    }
+                    $text = nl2br($text);
 
 
-//                     $tweet->text = $text;
-//                     $tweet->html = $this->getEmbedded($twitter->url . '/status/' . $tweet->status);
-//                     if($update) {
-//                         $tweet->update();
-//                     } else {
-//                         $tweet->save();
-//                     }
-//                 } catch (Exception $e) {
-//                     continue;
-//                 }
-//             }
-
+                    $tweet->text = $text;
+                    $tweet->html = $this->getEmbedded($twitter->url . '/status/' . $tweet->status);
+                    try {
+                        if($update) {
+                            $tweet->update();
+                        } else {
+                            $tweet->save();
+                        }
+                    } catch (Exception $e){
+                        continue;
+                    }
+            }
         }
     }
 
